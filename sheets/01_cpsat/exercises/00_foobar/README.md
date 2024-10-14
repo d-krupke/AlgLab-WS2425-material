@@ -56,17 +56,18 @@ Please fix the error and press enter to try again. Press Ctrl+C to abort.
 
 CP-SAT is not really needed for this problem, but it is a good opportunity to
 get familiar with the library. Thus, your next task is to let CP-SAT solve the
-problem. Only use the following functions from the `ortools` library:
+problem. You can use any function from the `ortools` library, such as:
 
 - `model = cp_model.CpModel()` to create a model
-- `model.NewBoolVar(...)` to create a boolean variable
-- `model.NewIntVar(...)` to create an integer variable
-- `model.Add(... <= ...)`/`model.Add(... >= ...)` to add a linear constraint
-- `model.Maximize(...)` to maximize an objective
+- `model.new_bool_var(...)` to create a boolean variable
+- `model.new_int_var(...)` to create an integer variable
+- `model.add(... <= ...)`/`model.add(... >= ...)` to add a linear constraint
+- `model.maximize(...)` to maximize an objective
 - `solver = cp_model.CpSolver()` to create a solver
-- `status = solver.Solve(model)` to solve the model
+- `status = solver.solve(model)` to solve the model
 - `status == cp_model.OPTIMAL` to check if the model was solved optimally
-- `solver.Value(...)` to get the value of a variable
+- `solver.value(...)` to get the value of a variable
+- Find more [here](https://d-krupke.github.io/cpsat-primer/04_modelling.html)
 
 1. Implement function `solve` in `solution_cpsat.py`. It has the same interface
    as the pure Python implementation. Be sure that you do not tell CP-SAT the
