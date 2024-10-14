@@ -1,0 +1,34 @@
+[tool.ruff]
+select = [
+    "E", "F", "W", # flake8
+    "B",  "B904",  # flake8-bugbear
+    "I",           # isort
+    "ARG",         # flake8-unused-arguments
+    "C4",          # flake8-comprehensions
+    "EM",          # flake8-errmsg
+    "ICN",         # flake8-import-conventions
+    "ISC",         # flake8-implicit-str-concat
+    "PGH",         # pygrep-hooks
+    "PIE",         # flake8-pie
+    "PL",          # pylint
+    "PT",          # flake8-pytest-style
+    "PTH",         # flake8-use-pathlib
+    "RET",         # flake8-return
+    "RUF",         # Ruff-specific
+    "SIM",         # flake8-simplify
+    "TID251",      # flake8-tidy-imports.banned-api
+    "T20",         # flake8-print
+    "UP",          # pyupgrade
+    "YTT",         # flake8-2020
+]
+extend-ignore = [
+    "PLR",     # Design rules for pylint
+    "PLE1205", # Format check doesn't work with our custom logger
+    "E501",    # Line too long
+    "PT004",   # Incorrect, just usefixtures instead.
+    "RUF009",  # Too easy to get a false positive
+]
+target-version = "py38"
+src = ["src"]
+unfixable = ["T20", "F841"]
+exclude = []
