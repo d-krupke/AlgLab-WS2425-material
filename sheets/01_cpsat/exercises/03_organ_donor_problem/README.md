@@ -106,7 +106,7 @@ ensuring that each cycle includes at most 3 transplantations.
 
 **Steps:**
 
-1. Implement a new solver in `solver_small_cycles.py` that restricts the size of
+1. Implement a new solver in `solution_small_cycles.py` that restricts the size of
    transplantation cycles to a maximum of 3 pairs.
 2. Test your updated solver using `python3 verify_small_cycles.py`.
 
