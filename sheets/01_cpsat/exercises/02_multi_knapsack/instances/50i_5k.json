@@ -1,0 +1,305 @@
+{
+  "items": [
+    {
+      "value": 3,
+      "weight": 2,
+      "toxic": true,
+      "id": "9f22bf3f-c817-46fe-916b-ed8ab3f9a098"
+    },
+    {
+      "value": 7,
+      "weight": 5,
+      "toxic": true,
+      "id": "bf0fad99-9dd6-4ad0-b32f-859bff273e17"
+    },
+    {
+      "value": 9,
+      "weight": 2,
+      "toxic": true,
+      "id": "c57aafd5-ac1a-43e3-acc8-358e35aa166a"
+    },
+    {
+      "value": 17,
+      "weight": 3,
+      "toxic": false,
+      "id": "330ac407-8c2f-4587-8028-74b77217e421"
+    },
+    {
+      "value": 23,
+      "weight": 3,
+      "toxic": true,
+      "id": "e6eef78c-9d27-4d1b-8e78-e51b731718ed"
+    },
+    {
+      "value": 14,
+      "weight": 2,
+      "toxic": false,
+      "id": "2827fc46-409a-45ca-95f4-af17f76651e8"
+    },
+    {
+      "value": 11,
+      "weight": 6,
+      "toxic": true,
+      "id": "8abfdcec-5f07-4b6a-8eed-130360d92027"
+    },
+    {
+      "value": 12,
+      "weight": 2,
+      "toxic": false,
+      "id": "d5f289d6-e791-4dfd-86ad-5770d86a0829"
+    },
+    {
+      "value": 3,
+      "weight": 2,
+      "toxic": false,
+      "id": "eb26614b-95df-4bb4-b8de-eb56f9602575"
+    },
+    {
+      "value": 20,
+      "weight": 4,
+      "toxic": false,
+      "id": "97a657f8-089c-4a28-9adb-560e784659ec"
+    },
+    {
+      "value": 23,
+      "weight": 2,
+      "toxic": false,
+      "id": "41c7364e-c75d-4f8b-a6c5-9694eb777979"
+    },
+    {
+      "value": 19,
+      "weight": 6,
+      "toxic": false,
+      "id": "c597610c-5ed8-4599-a6b5-cd670df771c5"
+    },
+    {
+      "value": 16,
+      "weight": 4,
+      "toxic": false,
+      "id": "b5347a15-ed70-4d96-be11-2c1c26bea114"
+    },
+    {
+      "value": 21,
+      "weight": 4,
+      "toxic": false,
+      "id": "16590fe8-13e4-40a3-8f2a-32d347191a67"
+    },
+    {
+      "value": 12,
+      "weight": 5,
+      "toxic": false,
+      "id": "9fd80626-b5ec-4980-8995-868e0bcb0dde"
+    },
+    {
+      "value": 1,
+      "weight": 2,
+      "toxic": false,
+      "id": "bef19baf-a29e-44fe-a81a-d8516ece96b3"
+    },
+    {
+      "value": 7,
+      "weight": 2,
+      "toxic": false,
+      "id": "0d7101d8-d6c8-42ac-bc20-611ba75d3362"
+    },
+    {
+      "value": 25,
+      "weight": 2,
+      "toxic": true,
+      "id": "403a180e-9c02-4793-92ff-fe0362ed5569"
+    },
+    {
+      "value": 11,
+      "weight": 3,
+      "toxic": true,
+      "id": "ead1c819-31f9-4a8d-ab2d-51cee7d9320c"
+    },
+    {
+      "value": 7,
+      "weight": 3,
+      "toxic": false,
+      "id": "19d00c8d-3714-4578-b466-fa1ea5862844"
+    },
+    {
+      "value": 5,
+      "weight": 5,
+      "toxic": true,
+      "id": "44bbe455-3918-4e25-a62b-7944ab2ed582"
+    },
+    {
+      "value": 20,
+      "weight": 2,
+      "toxic": true,
+      "id": "8cdb11a5-0c85-46c6-aad5-846a6c65975c"
+    },
+    {
+      "value": 1,
+      "weight": 6,
+      "toxic": true,
+      "id": "f7dee372-6deb-4333-a096-9babf4a36dc1"
+    },
+    {
+      "value": 13,
+      "weight": 5,
+      "toxic": true,
+      "id": "5b65db87-190b-4023-b7ef-cddb7b6459a9"
+    },
+    {
+      "value": 10,
+      "weight": 4,
+      "toxic": false,
+      "id": "2dcb2c53-0473-45f9-9266-d119fe68e4fe"
+    },
+    {
+      "value": 22,
+      "weight": 3,
+      "toxic": true,
+      "id": "eed4f040-0f7d-4240-8703-d655da761b14"
+    },
+    {
+      "value": 15,
+      "weight": 3,
+      "toxic": false,
+      "id": "50a8b6ff-00d6-41b3-b6d6-d9e2524eadd3"
+    },
+    {
+      "value": 10,
+      "weight": 4,
+      "toxic": false,
+      "id": "3dd0e7d6-75d6-4bf5-a9ef-014f61fa6cc9"
+    },
+    {
+      "value": 16,
+      "weight": 6,
+      "toxic": false,
+      "id": "a9a3a9c1-107f-4fe1-8cb3-4dfc8d09f765"
+    },
+    {
+      "value": 2,
+      "weight": 2,
+      "toxic": true,
+      "id": "916a507c-253f-4253-8c03-fd938b11cf62"
+    },
+    {
+      "value": 16,
+      "weight": 4,
+      "toxic": true,
+      "id": "06c39cca-d67b-4f13-a412-5793fa28e9f0"
+    },
+    {
+      "value": 10,
+      "weight": 2,
+      "toxic": false,
+      "id": "458e9c25-4a75-49fe-8222-c89c5d9139e2"
+    },
+    {
+      "value": 4,
+      "weight": 1,
+      "toxic": true,
+      "id": "581d0f58-90d6-4902-82a0-b1169d850e60"
+    },
+    {
+      "value": 19,
+      "weight": 2,
+      "toxic": true,
+      "id": "98f9a321-61df-4260-8d77-ac856c1c057d"
+    },
+    {
+      "value": 5,
+      "weight": 3,
+      "toxic": false,
+      "id": "794f802d-a39b-4e96-97a5-42b52bd862db"
+    },
+    {
+      "value": 11,
+      "weight": 6,
+      "toxic": false,
+      "id": "6219ab03-cec8-42ac-9dbc-ada53c1ed294"
+    },
+    {
+      "value": 14,
+      "weight": 6,
+      "toxic": true,
+      "id": "da883140-4d71-425e-b1d2-e2d6e567b1b6"
+    },
+    {
+      "value": 8,
+      "weight": 6,
+      "toxic": false,
+      "id": "2d779959-1f6d-47f9-a556-f2efd867401d"
+    },
+    {
+      "value": 20,
+      "weight": 1,
+      "toxic": true,
+      "id": "a18b93d4-b660-496d-8332-8aee407be3cb"
+    },
+    {
+      "value": 13,
+      "weight": 5,
+      "toxic": false,
+      "id": "7c5d0a0d-bb80-408d-8ebf-2782cfa062d8"
+    },
+    {
+      "value": 21,
+      "weight": 5,
+      "toxic": false,
+      "id": "b5982dd7-6dd3-43a2-beb0-b4a443732c9b"
+    },
+    {
+      "value": 13,
+      "weight": 6,
+      "toxic": true,
+      "id": "dcfc7d5f-c48f-4e96-8c22-1ca413562283"
+    },
+    {
+      "value": 3,
+      "weight": 6,
+      "toxic": true,
+      "id": "48b50b70-18df-4749-852b-124f8ff7e3b0"
+    },
+    {
+      "value": 24,
+      "weight": 2,
+      "toxic": true,
+      "id": "bb038a2e-2ba5-4e3d-b25b-e0774eb435f2"
+    },
+    {
+      "value": 20,
+      "weight": 6,
+      "toxic": true,
+      "id": "04db6929-40b5-479b-9d16-e6732716042c"
+    },
+    {
+      "value": 11,
+      "weight": 5,
+      "toxic": true,
+      "id": "870cc4b2-901f-4c51-b25f-b034605e609b"
+    },
+    {
+      "value": 23,
+      "weight": 4,
+      "toxic": true,
+      "id": "5c5f1f2f-0926-4f30-bd6d-502450119df2"
+    },
+    {
+      "value": 20,
+      "weight": 6,
+      "toxic": true,
+      "id": "0980616c-5019-4d17-8612-f80fc0a1ad7a"
+    },
+    {
+      "value": 2,
+      "weight": 1,
+      "toxic": true,
+      "id": "e3f958f9-5d5f-46a6-91bc-d628f8b512c1"
+    },
+    {
+      "value": 19,
+      "weight": 4,
+      "toxic": false,
+      "id": "2c732fd1-4ae9-4a35-9b59-38eb3325b0c5"
+    }
+  ],
+  "capacities": [16, 10, 12, 18, 12]
+}

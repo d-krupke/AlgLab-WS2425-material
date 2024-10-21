@@ -1,0 +1,5 @@
+matplotlib>=3.7.1
+networkx>=3.2.1
+ortools>=9.9.3963
+pydantic>=2.6.4
+tqdm>=4.66.2

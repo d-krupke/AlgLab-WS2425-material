@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "value": 505,
+      "weight": 23,
+      "toxic": true,
+      "id": "32e37c86-a0de-4103-9d94-54d34e3396e2"
+    },
+    {
+      "value": 352,
+      "weight": 26,
+      "toxic": true,
+      "id": "5df894a0-eeb2-4a28-9a50-0234a8545bbe"
+    },
+    {
+      "value": 458,
+      "weight": 20,
+      "toxic": false,
+      "id": "0842da5b-f660-4273-99b7-751cd2f36beb"
+    },
+    {
+      "value": 220,
+      "weight": 18,
+      "toxic": false,
+      "id": "21df7fc7-cf72-4b0b-801b-73b12acdacca"
+    },
+    {
+      "value": 354,
+      "weight": 32,
+      "toxic": true,
+      "id": "500fee2d-a113-4929-8dbb-3dd472b92f80"
+    },
+    {
+      "value": 414,
+      "weight": 27,
+      "toxic": true,
+      "id": "07171b97-5331-4cdb-9d77-65689b1a1219"
+    },
+    {
+      "value": 498,
+      "weight": 29,
+      "toxic": false,
+      "id": "c9091456-1728-4a48-a4fa-8418c863fd90"
+    },
+    {
+      "value": 545,
+      "weight": 26,
+      "toxic": true,
+      "id": "dd77e175-615e-455e-8f9a-d6f6d72a633c"
+    },
+    {
+      "value": 473,
+      "weight": 30,
+      "toxic": false,
+      "id": "9ddfe7b0-e568-4cfb-8872-4c7c08e91a46"
+    },
+    {
+      "value": 54,
+      "weight": 27,
+      "toxic": true,
+      "id": "78dc1cce-06b5-463f-8e92-cfa766162b0e"
+    }
+  ],
+  "capacities": [67]
+}

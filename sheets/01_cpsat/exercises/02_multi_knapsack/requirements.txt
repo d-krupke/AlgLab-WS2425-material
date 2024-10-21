@@ -1,0 +1,3 @@
+ortools>=9.8.3296
+pydantic>=2.6.3
+tqdm>=4.66.2
