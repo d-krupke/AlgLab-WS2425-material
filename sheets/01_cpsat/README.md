@@ -314,11 +314,11 @@ class KnapsackModel:
         self.items = items
         self.model = cp_model.CpModel()
         # 1. Create a boolean variable for each item
-        self.x = [self.model.NewBoolVar(f"x_{i}") for i in range(len(items))]
+        self.x = [self.model.new_bool_var(f"x_{i}") for i in range(len(items))]
         # 2. Create the weight constraint
-        self.model.Add(sum(x * i.weight for x, i in zip(self.x, items)) <= capacity)
+        self.model.add(sum(x * i.weight for x, i in zip(self.x, items)) <= capacity)
         # 3. Create the objective
-        self.model.Maximize(sum(x * i.value for x, i in zip(self.x, items)))
+        self.model.maximize(sum(x * i.value for x, i in zip(self.x, items)))
 
     def solve(self):
         # 4, Create the solver
@@ -326,7 +326,7 @@ class KnapsackModel:
         # Enabling logging will show us the progress of the search
         solver.parameters.log_search_progress = True
         # 5. Solve the model
-        status = solver.Solve(self.model)
+        status = solver.solve(self.model)
         # 6. Check and return the solution
         assert status == cp_model.OPTIMAL
         return [solver.Value(x) for x in self.x]
