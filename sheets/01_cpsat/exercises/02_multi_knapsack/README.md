@@ -14,9 +14,9 @@ limit.
 
 ---
 
-### Deliverables
+## Deliverables
 
-#### 1. **Mathematical Model**
+### 1. **Mathematical Model**
 
 The first step is to generalize the basic knapsack problem to the multi-knapsack
 scenario, where multiple trucks (knapsacks) are involved.
@@ -25,13 +25,44 @@ scenario, where multiple trucks (knapsacks) are involved.
 - What is the objective function?
 - What constraints do you need to consider?
 
-**Hint**: Assume that $k$ is the number of trucks, and $C_i$ represents the
-capacity of truck $i, i\in \{1,\ldots, k\}$. Use the knapsack model as a
+**Hint**: Assume that $K$ is the set of trucks, and $C_i$ represents the
+capacity of truck $i, i\in K$. Use the knapsack model as a
 reference.
+
+<details>
+   <summary>Click here for a fill-in-the-blank exercise to help you model the problem.</summary>
+   
+#### Parameters:
+
+- $I$: Set of available items.
+- $K$: Set of available trucks.
+- $v_i \in \mathbb{N}_0$ for $i \in I$: Value of item $i$.
+- $w_i \in \mathbb{N}_0$ for $i \in I$: Weight of item $i$.
+- $C_j \in \mathbb{N}_0$ for $j \in K$: Capacity of truck $j$.
+
+#### Decision Variables:
+
+- $x_{i,j} \in \mathbb{B} \quad \forall i \in I, j \in K$
+    - $x_{i,j} = 1$ if truck $j$ packs item $i$, and 0 otherwise.
+
+#### Objective Function:
+
+Maximize the total value of packed items:
+
+$$\max \sum_{i \in I} \sum_{j \in K} v_i \cdot \square$$
+
+#### Constraints:
+
+1. **Truck capacity constraint**: Do not exceed the capacity of any truck.
+   - $\sum_{i \in I} w_i \cdot \square \leq \square \quad \forall j \in \square$
+2. **Item assignment constraint**: Each item is packed in at most one truck.
+   - $\sum_{j \in K} \square \leq \square \quad \forall i \in I$
+     
+</details>
 
 ---
 
-#### 2. **Solver Implementation in CP-SAT**
+### 2. **Solver Implementation in CP-SAT**
 
 Once you have formulated the model, you will implement a solver using CP-SAT.
 This problem is NP-hard, so solving larger instances may take some time, but
@@ -68,6 +99,45 @@ To meet this new requirement:
 
 **Hint**: Use auxiliary variables to track whether a truck is used for toxic
 items.
+
+<details>
+   <summary>Click here for a fill-in-the-blank exercise to help you model the problem.</summary>
+   
+#### Parameters:
+
+- $I$: Set of available items.
+- $I_T\subseteq I$: Set of toxic items.
+- $I_N\subseteq I, I_T\cap I_N=\emptyset$: Set of non-toxic items.
+- $K$: Set of available trucks.
+- $v_i \in \mathbb{N}_0$ for $i \in I$: Value of item $i$.
+- $w_i \in \mathbb{N}_0$ for $i \in I$: Weight of item $i$.
+- $C_j \in \mathbb{N}_0$ for $j \in K$: Capacity of truck $j$.
+
+#### Decision Variables:
+
+- $x_{i,j} \in \mathbb{B} \quad \forall i \in I, j \in K$
+    - $x_{i,j} = 1$ if truck $j$ packs item $i$, and 0 otherwise.
+- $y_{j} in \mathbb{B} \quad \forall j\in K$
+   - $y_{j}=1$ if truck $j$ packs toxic items, and 0 otherwise.
+
+#### Objective Function:
+
+Maximize the total value of packed items:
+
+$$\max \sum_{i \in I} \sum_{j \in K} v_i \cdot \square$$
+
+#### Constraints:
+
+1. **Truck capacity constraint**: Do not exceed the capacity of any truck.
+   - $\sum_{i \in I} w_i \cdot \square \leq \square \quad \forall j \in \square$
+2. **Item assignment constraint**: Each item is packed in at most one truck.
+   - $\sum_{j \in K} \square \leq \square \quad \forall i \in I$
+3. **Toxic items constraint**: Do not mix toxic and non-toxic items in the same truck
+   - $\square \Rightarrow \square \quad \forall i \in \square, j \in \square$
+   - $\square \Rightarrow \neg \square \quad \forall i \in \square, j\in \square$
+
+Note that this is only one possible way of modelling the problem.
+</details>
 
 ---
 
