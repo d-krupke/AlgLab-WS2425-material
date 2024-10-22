@@ -153,5 +153,3 @@ detail in future courses such as our advanced MMA course.
   CP-SAT.
 - [pre-commit](https://pre-commit.com/): A tool for running code formatting and
   checks before commits.
-- [Git LFS](https://git-lfs.com/): Used for storing large files such as test
-  instances.

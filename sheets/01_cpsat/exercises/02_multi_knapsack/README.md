@@ -154,6 +154,3 @@ Note that this is only one possible way of modelling the problem.
   configuration for you that you can use to quickly pretty up and check your
   code. You can install it by running `pip install pre-commit` and then
   `pre-commit run --all-files` to run it on all files in your repository.
-- [Git LFS](https://git-lfs.com/): The instances are stored using Git LFS. You
-  may need to install it as otherwise the instances will be empty and result in
-  an error.
