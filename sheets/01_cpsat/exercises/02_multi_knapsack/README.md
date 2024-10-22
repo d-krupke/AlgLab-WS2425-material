@@ -107,7 +107,7 @@ items.
 
 - $I$: Set of available items.
 - $I_T\subseteq I$: Set of toxic items.
-- $I_N\subseteq I, I_T\cap I_N=\emptyset$: Set of non-toxic items.
+- $I_N = I\setminus I_T$: Set of non-toxic items.
 - $K$: Set of available trucks.
 - $v_i \in \mathbb{N}_0$ for $i \in I$: Value of item $i$.
 - $w_i \in \mathbb{N}_0$ for $i \in I$: Weight of item $i$.
@@ -117,7 +117,7 @@ items.
 
 - $x_{i,j} \in \mathbb{B} \quad \forall i \in I, j \in K$
     - $x_{i,j} = 1$ if truck $j$ packs item $i$, and 0 otherwise.
-- $y_{j} in \mathbb{B} \quad \forall j\in K$
+- $y_{j} \in \mathbb{B} \quad \forall j\in K$
    - $y_{j}=1$ if truck $j$ packs toxic items, and 0 otherwise.
 
 #### Objective Function:
