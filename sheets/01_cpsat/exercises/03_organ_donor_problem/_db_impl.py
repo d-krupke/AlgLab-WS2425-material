@@ -1,5 +1,5 @@
-import os
 import sqlite3
+from pathlib import Path
 from typing import List
 
 from database import Donor, Recipient, TransplantDatabase
@@ -12,9 +12,9 @@ class SqliteTransplantDatabase(TransplantDatabase):
     """
 
     def __init__(self, path: str) -> None:
-        super().__init__()
-        if not os.path.exists(path):
-            raise FileNotFoundError(f"File {path} does not exist!")
+        if not Path(path).exists():
+            msg = f"File {path} does not exist!"
+            raise FileNotFoundError(msg)
         self.dbcon = sqlite3.connect(path)
 
     def get_all_donors(self) -> List[Donor]:
@@ -22,7 +22,7 @@ class SqliteTransplantDatabase(TransplantDatabase):
         Get all registered donors from the database.
         """
         cur = self.dbcon.cursor()
-        cur.row_factory = sqlite3.Row
+        cur.row_factory = sqlite3.Row  # type: ignore[attr-defined]
         cur.execute("SELECT id, represents FROM donors")
         return [Donor(id=row["id"]) for row in cur.fetchall()]
 
@@ -31,7 +31,7 @@ class SqliteTransplantDatabase(TransplantDatabase):
         Get all recipients from the database.
         """
         cur = self.dbcon.cursor()
-        cur.row_factory = sqlite3.Row
+        cur.row_factory = sqlite3.Row  # type: ignore[attr-defined]
         cur.execute("SELECT id FROM recipients")
         return [Recipient(id=row["id"]) for row in cur.fetchall()]
 
@@ -45,7 +45,7 @@ class SqliteTransplantDatabase(TransplantDatabase):
         """
 
         cur = self.dbcon.cursor()
-        cur.row_factory = sqlite3.Row
+        cur.row_factory = sqlite3.Row  # type: ignore[attr-defined]
         cur.execute(
             """
             SELECT d.id
@@ -75,7 +75,7 @@ class SqliteTransplantDatabase(TransplantDatabase):
         """
 
         cur = self.dbcon.cursor()
-        cur.row_factory = sqlite3.Row
+        cur.row_factory = sqlite3.Row  # type: ignore[attr-defined]
         cur.execute(
             """
             SELECT r.id
@@ -103,7 +103,7 @@ class SqliteTransplantDatabase(TransplantDatabase):
         """
 
         cur = self.dbcon.cursor()
-        cur.row_factory = sqlite3.Row
+        cur.row_factory = sqlite3.Row  # type: ignore[attr-defined]
         cur.execute(
             "SELECT id FROM donors WHERE represents = ?",
             (int(recipient.id),),
@@ -116,7 +116,7 @@ class SqliteTransplantDatabase(TransplantDatabase):
         """
 
         cur = self.dbcon.cursor()
-        cur.row_factory = sqlite3.Row
+        cur.row_factory = sqlite3.Row  # type: ignore[attr-defined]
         cur.execute(
             """
             SELECT r.id

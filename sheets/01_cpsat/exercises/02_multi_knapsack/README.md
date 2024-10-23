@@ -26,12 +26,11 @@ scenario, where multiple trucks (knapsacks) are involved.
 - What constraints do you need to consider?
 
 **Hint**: Assume that $K$ is the set of trucks, and $C_i$ represents the
-capacity of truck $i, i\in K$. Use the knapsack model as a
-reference.
+capacity of truck $i, i\in K$. Use the knapsack model as a reference.
 
 <details>
    <summary>Click here for a fill-in-the-blank exercise to help you model the problem.</summary>
-   
+
 #### Parameters:
 
 - $I$: Set of available items.
@@ -43,7 +42,7 @@ reference.
 #### Decision Variables:
 
 - $x_{i,j} \in \mathbb{B} \quad \forall i \in I, j \in K$
-    - $x_{i,j} = 1$ if truck $j$ packs item $i$, and 0 otherwise.
+  - $x_{i,j} = 1$ if truck $j$ packs item $i$, and 0 otherwise.
 
 #### Objective Function:
 
@@ -57,7 +56,7 @@ $$\max \sum_{i \in I} \sum_{j \in K} v_i \cdot \square$$
    - $\sum_{i \in I} w_i \cdot \square \leq \square \quad \forall j \in \square$
 2. **Item assignment constraint**: Each item is packed in at most one truck.
    - $\sum_{j \in K} \square \leq \square \quad \forall i \in I$
-     
+
 </details>
 
 ---
@@ -102,12 +101,12 @@ items.
 
 <details>
    <summary>Click here for a fill-in-the-blank exercise to help you model the problem.</summary>
-   
+
 #### Parameters:
 
 - $I$: Set of available items.
 - $I_T\subseteq I$: Set of toxic items.
-- $I_N = I\setminus I_T$: Set of non-toxic items.
+- $I_N\subseteq I, I_T\cap I_N=\emptyset$: Set of non-toxic items.
 - $K$: Set of available trucks.
 - $v_i \in \mathbb{N}_0$ for $i \in I$: Value of item $i$.
 - $w_i \in \mathbb{N}_0$ for $i \in I$: Weight of item $i$.
@@ -116,9 +115,9 @@ items.
 #### Decision Variables:
 
 - $x_{i,j} \in \mathbb{B} \quad \forall i \in I, j \in K$
-    - $x_{i,j} = 1$ if truck $j$ packs item $i$, and 0 otherwise.
-- $y_{j} \in \mathbb{B} \quad \forall j\in K$
-   - $y_{j}=1$ if truck $j$ packs toxic items, and 0 otherwise.
+  - $x_{i,j} = 1$ if truck $j$ packs item $i$, and 0 otherwise.
+- $y_{j} in \mathbb{B} \quad \forall j\in K$
+  - $y_{j}=1$ if truck $j$ packs toxic items, and 0 otherwise.
 
 #### Objective Function:
 
@@ -132,11 +131,13 @@ $$\max \sum_{i \in I} \sum_{j \in K} v_i \cdot \square$$
    - $\sum_{i \in I} w_i \cdot \square \leq \square \quad \forall j \in \square$
 2. **Item assignment constraint**: Each item is packed in at most one truck.
    - $\sum_{j \in K} \square \leq \square \quad \forall i \in I$
-3. **Toxic items constraint**: Do not mix toxic and non-toxic items in the same truck
+3. **Toxic items constraint**: Do not mix toxic and non-toxic items in the same
+   truck
    - $\square \Rightarrow \square \quad \forall i \in \square, j \in \square$
    - $\square \Rightarrow \neg \square \quad \forall i \in \square, j\in \square$
 
 Note that this is only one possible way of modelling the problem.
+
 </details>
 
 ---

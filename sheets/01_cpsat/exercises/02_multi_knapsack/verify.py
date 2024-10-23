@@ -3,12 +3,12 @@ This module contains test cases for the MultiKnapsackSolver class in solver.py.
 It tests the correctness of the solution returned by the solver for different instances.
 """
 
-import os
+from pathlib import Path
 
 from _alglab_utils import CHECK, main, mandatory_testcase
 from solution import Instance, MultiKnapsackSolver, Solution
 
-INSTANCE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "instances")
+INSTANCE_DIR = Path(__file__).resolve().parent / "instances"
 
 
 def solve_instance_and_check_solution(
@@ -18,7 +18,7 @@ def solve_instance_and_check_solution(
     activate_toxic: bool = False,
 ):
     instance = None
-    with open(os.path.join(INSTANCE_DIR, filename)) as f:
+    with Path(INSTANCE_DIR / filename).open() as f:
         instance = Instance.model_validate_json(f.read())
     multi_knapsack = MultiKnapsackSolver(instance, activate_toxic=activate_toxic)
     solution = multi_knapsack.solve(timelimit=timelimit)

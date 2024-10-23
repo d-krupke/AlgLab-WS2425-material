@@ -3,15 +3,18 @@ This file contains utils for checking the correctness of the solutions.
 Do not modify this file!
 
 Author: Dominik Krupke
-Version: 2023-11-11
+Version: 2024-10-23
+
+Changes:
+2024-10-23: Fixed some code smells
 """
 
 import inspect
-import os
 import subprocess
 import sys
 import time
 import typing
+from pathlib import Path
 
 from tqdm import tqdm  # pip install tqdm
 
@@ -19,12 +22,16 @@ from tqdm import tqdm  # pip install tqdm
 _check_list = {}
 
 
+def log(*args, **kwargs):
+    print(*args, **kwargs)
+
+
 class _TestCase:
     def __init__(self, func, max_runtime_s):
         self.func_name = func.__name__
         self.func = func
         # extract full path of function file
-        self.func_file = os.path.abspath(inspect.getfile(func))
+        self.func_file = Path(inspect.getfile(func)).resolve()
 
         self.max_runtime_s = max_runtime_s
 
@@ -41,23 +48,23 @@ class _TestCase:
         outs = outs.decode("utf-8")
         errs = errs.decode("utf-8")
         # print output
-        print(outs)
-        print(errs)
-        print(f"Test '{self.func_name}' timed out after {self.max_runtime_s} seconds.")
+        log(outs)
+        log(errs)
+        log(f"Test '{self.func_name}' timed out after {self.max_runtime_s} seconds.")
 
     def _on_error(self, outs, errs):
         # decode output
         outs = outs.decode("utf-8")
         errs = errs.decode("utf-8")
         # print output
-        print(outs)
-        print(errs)
-        print(f"Test '{self.func_name}' failed.")
+        log(outs)
+        log(errs)
+        log(f"Test '{self.func_name}' failed.")
 
     def _create_subprocess(self):
         cmd = [
             sys.executable,
-            os.path.abspath(__file__),
+            Path(__file__).resolve(),
             self.func_file,
             self.func_name,
         ]
@@ -69,8 +76,8 @@ class _TestCase:
         terminates without error in time. Capture the output of the
         function and print it in case of an error.
         """
-        print(f"Running test '{self.func_name}'...")
-        assert os.path.exists(self.func_file)
+        log(f"Running test '{self.func_name}'...")
+        assert self.func_file.exists()
         # create subprocess
         proc = self._create_subprocess()
         # wait for process to terminate
@@ -90,7 +97,7 @@ def FAIL(msg):
     """
     Print a message and exit.
     """
-    print(f"Check failed: {msg}")
+    log(f"Check failed: {msg}")
     exit(1)
 
 
@@ -130,18 +137,18 @@ def run_all_checks():
     """
     Run all checks in subprocesses with a timeout.
     """
-    print("Running all checks...")
+    log("Running all checks...")
     for func_name in tqdm(_check_list, desc="Progress"):
         succ, exc_time = _run_with_runtime_measurement(func_name)
         while not succ:
-            print("========================================")
-            print(
+            log("========================================")
+            log(
                 "Please fix the error and press enter to try again. Press Ctrl+C to abort."
             )
             input()
             succ, exc_time = _run_with_runtime_measurement(func_name)
-        print(f"Test '{func_name}' passed in {exc_time:.1f}s.")
-    print("All checks passed.")
+        log(f"Test '{func_name}' passed in {exc_time:.1f}s.")
+    log("All checks passed.")
 
 
 def main():
@@ -153,10 +160,10 @@ def main():
     if len(sys.argv) == 2:
         func_name = sys.argv[1]
         if func_name not in _check_list:
-            print(f"Test '{func_name}' not found.")
-            print("Available tests:")
+            log(f"Test '{func_name}' not found.")
+            log("Available tests:")
             for func_name in _check_list:
-                print(f"  {func_name}")
+                log(f"  {func_name}")
             exit(1)
         else:
             _check_list[func_name].run()
@@ -166,13 +173,13 @@ def main():
 
 
 def print_how_to_test_individually():
-    print("-" * 80)
-    print("You can run a single test by passing the name of the test as an argument.")
-    print("Use this to debug a single test. It will also show the output of the test.")
-    print("Available tests:")
+    log("-" * 80)
+    log("You can run a single test by passing the name of the test as an argument.")
+    log("Use this to debug a single test. It will also show the output of the test.")
+    log("Available tests:")
     for func_name in _check_list:
-        print(f"  {func_name}")
-    print("-" * 80)
+        log(f"  {func_name}")
+    log("-" * 80)
 
 
 if __name__ == "__main__":
@@ -184,8 +191,10 @@ if __name__ == "__main__":
     # set __name__ to None such that the file is not executed
     glob["__name__"] = None
     # if the function imports other files, they must be in the path
-    sys.path.append(os.path.dirname(path_to_py))
+    sys.path.append(str(Path(path_to_py).parent))
     # read file and append function call
-    exc_file = f"{open(path_to_py).read()}\n{func_name}()"
+
+    with Path(path_to_py).open() as file:
+        exc_file = f"{file.read()}\n{func_name}()"
     # execute the modified file
     exec(exc_file, glob)

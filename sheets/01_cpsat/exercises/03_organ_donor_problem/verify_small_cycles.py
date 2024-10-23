@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 import networkx as nx
 from _alglab_utils import CHECK, main, mandatory_testcase
@@ -6,13 +7,13 @@ from _db_impl import SqliteTransplantDatabase, TransplantDatabase
 from data_schema import Donation, Solution
 from solution_small_cycles import CycleLimitingCrossoverTransplantSolver
 
-INSTANCE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "instances")
+INSTANCE_DIR = os.path.join(os.path.dirname(Path(__file__).resolve()), "instances")
 MAX_CYCLE_LEN = 3
 
 
 def solve_instance_and_check_solution(db_name: str, solution_score: int):
-    db_path = os.path.join(INSTANCE_DIR, db_name)
-    db: TransplantDatabase = SqliteTransplantDatabase(path=db_path)
+    db_path = Path(INSTANCE_DIR) / db_name
+    db: TransplantDatabase = SqliteTransplantDatabase(path=str(db_path))
     solver = CycleLimitingCrossoverTransplantSolver(database=db)
     solution: Solution = solver.optimize()
 
@@ -21,7 +22,7 @@ def solve_instance_and_check_solution(db_name: str, solution_score: int):
 
     donation_graph = get_donation_graph(solution, db)
     CHECK(
-        all(d == 2 for _, d in donation_graph.degree),
+        all(d == 2 for _, d in donation_graph.degree),  # type: ignore[attr-defined]
         "The donation graph indicates an invalid solution!",
     )
     for cycle in nx.simple_cycles(donation_graph):
@@ -59,13 +60,13 @@ def check_solution_validity(solution: Solution, database: TransplantDatabase):
     """
     CHECK(solution is not None, "The solution is None!")
     CHECK(isinstance(solution, Solution), "The solution must be of type 'Solution'.")
-    solution = solution.donations
+    donations = solution.donations
     CHECK(
         all(isinstance(don, Donation) for don in solution),
         "The solution list must be made of entries of type 'Donation'!",
     )
     # check that donations are between compatible donor+patient
-    for donation in solution:
+    for donation in donations:
         patient = donation.recipient
         compatible_donors = database.get_compatible_donors(patient)
         CHECK(
@@ -75,29 +76,29 @@ def check_solution_validity(solution: Solution, database: TransplantDatabase):
 
     # check that every donor only donates once
     CHECK(
-        len(set(don.donor for don in solution)) == len(solution),
+        len({don.donor for don in donations}) == len(donations),
         "There is at least one donor who occurs multiple times in the solution list!",
     )
     # check that every patient only receives once
     CHECK(
-        len(set(don.recipient for don in solution)) == len(solution),
+        len({don.recipient for don in donations}) == len(donations),
         "There is at least one patient who occurs multiple times in the solution list!",
     )
     # check that for every receiving recipient, exactly one associated donor donates
-    for donation in solution:
+    for donation in donations:
         patient = donation.recipient
         associated_donors = set(database.get_partner_donors(patient))
-        associated_donors &= set(don.donor for don in solution)
+        associated_donors &= {don.donor for don in donations}
         CHECK(
             len(associated_donors) == 1,
             f"Every patient that receives a donation needs exactly one representative donor to make a donation to somebody else! Total count for patient {patient.id}: {len(associated_donors)}",
         )
     # check that no donor donates, whose associated patient does not receive a donation
-    for donation in solution:
+    for donation in donations:
         donor = donation.donor
         assoc_patient = database.get_partner_recipient(donor)
         CHECK(
-            any(don.recipient == assoc_patient for don in solution),
+            any(don.recipient == assoc_patient for don in donations),
             f"Donor {donor.id} donates, but their associated patient ({assoc_patient.id}) does not receive a donation!",
         )
 
