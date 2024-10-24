@@ -62,7 +62,7 @@ def check_solution_validity(solution: Solution, database: TransplantDatabase):
     CHECK(isinstance(solution, Solution), "The solution must be of type 'Solution'.")
     donations = solution.donations
     CHECK(
-        all(isinstance(don, Donation) for don in solution),
+        all(isinstance(don, Donation) for don in donations),
         "The solution list must be made of entries of type 'Donation'!",
     )
     # check that donations are between compatible donor+patient
