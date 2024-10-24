@@ -47,6 +47,7 @@ transplantations.
 2. A recipient can receive only one organ.
 3. A donor is willing to donate only if their associated recipient receives an
    organ in exchange.
+4. If a recipient has multiple willing donors, only one of them is willing to donate in the final solution.
 
 **Objective:**
 
