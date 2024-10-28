@@ -1,0 +1,23 @@
+<h2>
+  <span class="badge bg-primary rounded-pill"
+    >Capacity: {{instance.capacity}}</span
+  >
+</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Items</th>
+      <th scope="col">Value</th>
+      <th scope="col">Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in instance.items %}
+    <tr>
+      <th scope="row">Item {{loop.index-1}}</th>
+      <td>{{item.value}}</td>
+      <td>{{item.weight}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

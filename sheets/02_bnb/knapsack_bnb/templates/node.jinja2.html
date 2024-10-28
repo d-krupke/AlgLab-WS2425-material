@@ -1,0 +1,54 @@
+<div class="card-body">
+<h5 class="card-title">
+        Node Details
+</h5>
+    <div class="card-body">
+        <div class="row mb-2">
+            <div class="col-md-4">
+                <p class="mb-0"><b>Lower Bound:</b> {{ lb }}</p>
+            </div>
+            <div class="col-md-4">
+                <p class="mb-0"><b>Upper Bound:</b> {{ ub }}</p>
+            </div>
+            <div class="col-md-4">
+                <p class="mb-0"><b>Status:</b> {{ node.status.value }}</p>
+            </div>
+        </div>
+    </div>
+    <table class="table mb-0">
+        <colgroup>
+            <col style="width: 30%;"> <!-- Adjust the width as needed for the Items column -->
+            <col style="width: 70%;"> <!-- Adjust the width as needed for the x column -->
+        </colgroup>
+        <thead>
+            <tr>
+                <th scope="col">Items</th>
+                <th scope="col">x</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for value in node.relaxed_solution.selection %}
+            <tr
+            {% if node.branching_decisions[loop.index-1] == value %}
+            class="table-secondary"
+            {% elif 0 < value < 1 %}
+            class="table-warning"
+            {% endif %}>
+                <th scope="row">Item {{ loop.index-1 }}</th>
+                <td>{{ value | round(3) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Solutions found during search-->
+    {% if heuristic_solutions %}
+    <h5 class="card-title mt-3">Heuristic Solutions</h5>
+    <ul class="list-group">
+    {% for solution in heuristic_solutions %}
+    <li class="list-group-item">
+        Found solution via heuristic: {{ solution }}; Value: {{ solution.value() }}
+    </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+</div>
