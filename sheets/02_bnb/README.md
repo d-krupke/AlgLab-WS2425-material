@@ -1,8 +1,8 @@
 # Your own Branch and Bound Algorithm
 
 After you have made some first experiences with solving the Knapsack and other
-problems using CP-SAT as a black-box solver, we take a step back and look at
-the fundamentals of solving NP-hard optimization problems in practice.
+problems using CP-SAT as a black-box solver, we take a step back and look at the
+fundamentals of solving NP-hard optimization problems in practice.
 
 This exercise is designed to guide you through the process of implementing an
 efficient branch and bound algorithm, specifically tailored to tackle the

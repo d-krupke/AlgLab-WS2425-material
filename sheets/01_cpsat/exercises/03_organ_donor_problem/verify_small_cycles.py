@@ -43,6 +43,10 @@ def get_donation_graph(solution: Solution, database: TransplantDatabase) -> nx.D
     for donation in solution.donations:
         represented_patient = database.get_partner_recipient(donation.donor)
         patient = donation.recipient
+        CHECK(
+            not graph.has_edge(represented_patient, patient),
+            "The solution contains multiple donations between the same donor and recipient!",
+        )
         graph.add_edge(represented_patient, patient)
     return graph
 

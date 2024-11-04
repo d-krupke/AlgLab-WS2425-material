@@ -23,7 +23,7 @@ scenario, where multiple trucks (knapsacks) are involved.
 
 - What are the variables in this problem?
 - What is the objective function?
-- What constraints do you need to consider?
+- Which constraints do you need to consider?
 
 **Hint**: Assume that $K$ is the set of trucks, and $C_i$ represents the
 capacity of truck $i, i\in K$. Use the knapsack model as a reference.
