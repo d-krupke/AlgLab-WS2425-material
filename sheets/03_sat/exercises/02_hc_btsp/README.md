@@ -44,9 +44,9 @@ added iteratively as needed.
 
 #### Decision Variables:
 
-- $x_{vw} \in \mathbb{B} \quad \forall (v, w) \in E$: Binary variables indicating
-  whether edge $(v, w)$ is part of the Hamiltonian cycle. Since the graph is
-  undirected, $x_{vw} = x_{wv}$.
+- $x_{vw} \in \mathbb{B} \quad \forall (v, w) \in E$: Binary variables
+  indicating whether edge $(v, w)$ is part of the Hamiltonian cycle. Since the
+  graph is undirected, $x_{vw} = x_{wv}$.
 
 #### Constraints:
 

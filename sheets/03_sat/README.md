@@ -169,10 +169,13 @@ The model is very simple:
   parameter we want to optimize for. As we are solving the decision problem, we
   will try different values for $k$. The smallest feasible $k$ is the optimal
   solution.
+- $\mathcal{C}(G)$: The set of all cycles in the graph $G$. A cycle is a sequence of
+    vertices $v_1, \ldots, v_n\in V$ such that $(v_1, v_2), \ldots, (v_{n-1}, v_n),
+    (v_n, v_1)\in E$ are edges in the graph $G$.
 
 #### Decision Variables:
 
-- $x_v \in \{0,1\} \quad \forall v \in V$: A boolean variable indicating if
+- $x_v \in \mathbb{B} \quad \forall v \in V$: A boolean variable indicating if
   vertex $v$ is selected. It is true if the vertex is selected, and false
   otherwise.
 
@@ -182,7 +185,7 @@ The model is very simple:
    - $\sum_{v \in V} x_v \leq k$
 2. **Cycle Constraints**: For every cycle $C$ in the graph, at least one vertex
    must be selected.
-   - $ \forall \text{Cycle } C \in G:\quad \sum\_{v \in C} x_v \geq 1$
+   - $\forall C \in \mathcal{C}(G):\quad \bigvee_{v \in C} x_v$
 
 The biggest problem in this model is that we need to enumerate all cycles in the
 graph, which can be exponential. However, we can use the following trick to
