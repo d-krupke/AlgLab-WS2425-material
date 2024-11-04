@@ -41,7 +41,7 @@ for such a formula would be
 ```
 
 The boolean satisfiability problem asks if a given formula $\phi$ is
-*satisfiable$. A formula is satisfiable if there is a *satisfying assignment\*,
+*satisfiable*. A formula is satisfiable if there is a *satisfying assignment\*,
 i.e., a mapping $a: \{x_1,\ldots,x_n\} \to \{\texttt{true}, \texttt{false}\}$,
 that assigns every variable a boolean value, such that the formula evaluates to
 true. For a formula $\phi$ is conjunctive normal form, this implies that every
