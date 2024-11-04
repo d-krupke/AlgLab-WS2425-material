@@ -81,9 +81,6 @@ useful.
 
 </details>
 
-This version clarifies each point and directly addresses the mistakes to help
-students understand why these steps are necessary.
-
 ## References
 
 - [A peek inside SAT Solvers - Jon Smock](https://www.youtube.com/watch?v=d76e4hV1iJY):

@@ -40,10 +40,11 @@ added iteratively as needed.
 
 - $G = (V, E)$: A graph with vertices $V$ and edges $E$, where every pair of
   vertices is connected by an edge.
+- $N(v)$: The set of neighbors of vertex $v$.
 
 #### Decision Variables:
 
-- $x_{vw} \in \{0, 1\} \quad \forall (v, w) \in E$: Binary variables indicating
+- $x_{vw} \in \mathbb{B} \quad \forall (v, w) \in E$: Binary variables indicating
   whether edge $(v, w)$ is part of the Hamiltonian cycle. Since the graph is
   undirected, $x_{vw} = x_{wv}$.
 
@@ -51,7 +52,7 @@ added iteratively as needed.
 
 1. **Degree Constraints**: Each vertex $v$ must have exactly two incident edges.
    This will ensure that the selected edges form cycles.
-   - $\sum_{w \in V} x_{vw} = 2 \quad \forall v \in V$
+   - $\sum_{w \in N(v)} x_{vw} = 2 \quad \forall v \in V$
 2. **Subtour Elimination Constraints**: For each subset $S \subseteq V$ with
    $|S| \geq 2$, ensure there are at least two edges exiting the subset. This
    will ensure that the selected edges are connected, and in combination with
