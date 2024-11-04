@@ -1,0 +1,5 @@
+AlgBench>=2.4.0
+matplotlib>=3.8.2
+networkx>=3.2.1
+python_sat>=1.8.dev3
+tqdm>=4.66.2
