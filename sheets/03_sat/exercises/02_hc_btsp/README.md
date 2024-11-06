@@ -22,42 +22,41 @@ at most $n^2$ possible objective values in a graph with $n$ cities. This
 constrained domain contrasts with the classical TSP, where minimizing the total
 tour length introduces a much larger range of potential values.
 
-BTSP is particularly relevant in situations where managing the worst travel
-segment is more critical than minimizing the total journey length. This approach
-is useful in logistics, scheduling, and network design, where reducing the most
-demanding segment of a route is often more practical than reducing the overall
-distance.
-
-## Preliminaries: The Dantzig-Fulkerson-Johnson Formulation for Tours
-
-There are multiple ways to model the Hamiltonian cycle problem. One of the most
-efficient is the **Dantzig-Fulkerson-Johnson (DFJ) formulation**, which ensures
-that each subset of vertices has at least two edges exiting it. Since
-enumerating all possible subsets is impractical, these constraints are typically
-added iteratively as needed.
-
-#### Parameters:
-
-- $G = (V, E)$: A graph with vertices $V$ and edges $E$, where every pair of
-  vertices is connected by an edge.
-- $N(v)$: The set of neighbors of vertex $v$.
-
-#### Decision Variables:
-
-- $x_{vw} \in \mathbb{B} \quad \forall (v, w) \in E$: Binary variables
-  indicating whether edge $(v, w)$ is part of the Hamiltonian cycle. Since the
-  graph is undirected, $x_{vw} = x_{wv}$.
-
-#### Constraints:
-
-1. **Degree Constraints**: Each vertex $v$ must have exactly two incident edges.
-   This will ensure that the selected edges form cycles.
-   - $\sum_{w \in N(v)} x_{vw} = 2 \quad \forall v \in V$
-2. **Subtour Elimination Constraints**: For each subset $S \subseteq V$ with
-   $|S| \geq 2$, ensure there are at least two edges exiting the subset. This
-   will ensure that the selected edges are connected, and in combination with
-   the degree constraints, form a Hamiltonian cycle.
-   - $\sum_{(v, w) \in E, v \in S, w \notin S} x_{vw} \geq 2 \quad \forall S \subseteq V, |S| \geq 2$
+> [!NOTE]
+>
+> **The Dantzig-Fulkerson-Johnson Formulation for Tours**
+>
+> There are multiple ways to model the Hamiltonian cycle problem. One of the
+> most efficient is the **Dantzig-Fulkerson-Johnson (DFJ) formulation**, which
+> ensures that each subset of vertices has at least two edges exiting it. Since
+> enumerating all possible subsets is impractical, these constraints are
+> typically added iteratively as needed.
+>
+> **Parameters:**
+>
+> - $G = (V, E)$: A graph with vertices $V$ and edges $E$, where every pair of
+>   vertices is connected by an edge.
+> - $N(v)$: The set of neighbors of vertex $v$.
+>
+> **Decision Variables:**
+>
+> - $x_{vw} \in \mathbb{B} \quad \forall (v, w) \in E$: Binary variables
+>   indicating whether edge $(v, w)$ is part of the Hamiltonian cycle. Since the
+>   graph is undirected, $x_{vw} = x_{wv}$.
+>
+> **Constraints:**
+>
+> 1. **Degree Constraints**: Each vertex $v$ must have exactly two incident
+>    edges. This will ensure that the selected edges form cycles.
+>
+> - $\sum_{w \in N(v)} x_{vw} = 2 \quad \forall v \in V$
+>
+> 2. **Subtour Elimination Constraints**: For each subset $S \subseteq V$ with
+>    $|S| \geq 2$, ensure there are at least two edges exiting the subset. This
+>    will ensure that the selected edges are connected, and in combination with
+>    the degree constraints, form a Hamiltonian cycle.
+>
+> - $\sum_{(v, w) \in E, v \in S, w \notin S} x_{vw} \geq 2 \quad \forall S \subseteq V, |S| \geq 2$
 
 ## Deliverables
 
@@ -72,10 +71,12 @@ added iteratively as needed.
 4. Test your implementation by running the script
    `python3 verify_hamiltonian.py`.
 
-**Requirements**: Use the Dantzig-Fulkerson-Johnson formulation for efficiency.
-Leverage `nx.connected_components` from the `networkx` library to identify
-connected components and use cardinality constraints to ensure each component
-has at least two edges exiting it.
+> [!IMPORTANT]
+>
+> Use the Dantzig-Fulkerson-Johnson formulation for efficiency. Leverage
+> `nx.connected_components` from the `networkx` library to identify connected
+> components and use cardinality constraints to ensure each component has an
+> edge leaving it.
 
 ### Deliverable 2: Bottleneck Traveling Salesman Problem (BTSP) Solver
 
@@ -88,35 +89,35 @@ has at least two edges exiting it.
    BTSP.
 2. Verify your implementation by executing `python3 verify_btsp.py`.
 
-<details>
-<summary>Click here for a list of common mistakes to avoid in this exercise</summary>
-
-1. **Using Simplified Constraints Instead of the Dantzig-Fulkerson-Johnson (DFJ)
-   Formulation** A common mistake is to replace the DFJ formulation with a
-   simpler constraint that only prohibits cycles of length $|C|$ by enforcing
-   $\sum_{(i, j) \in C} x_{ij} \leq |C| - 1$, resp., adding a clause prohibiting
-   one of the edges. While this constraint is often introduced in the literature
-   as a first step, it is exponentially weaker than the DFJ formulation. The DFJ
-   formulation also prohibits any permutations of a cycle, making it much more
-   effective for finding valid Hamiltonian cycles.
-
-2. **Restricting the Objective Search to Integer Values** Another frequent error
-   is limiting the search for the objective to integer values or attempting to
-   round edge weights to large integers. Edge weights are not always integral,
-   and rounding can lead to inaccuracies. Although a sufficiently high
-   resolution might allow tests to pass, this approach is likely to be too slow
-   for larger instances. Make sure to work directly with the original edge
-   weights to achieve accurate and efficient results.
-
-3. **Attempting to Add All Subtour Elimination Constraints at Once** A frequent
-   mistake is trying to add all subtour elimination constraints at the start of
-   the optimization process, rather than adding them dynamically as needed.
-   Since there is an exponential number of these constraints, adding them all
-   upfront makes the optimization process prohibitively slow. Instead, add
-   subtour elimination constraints only for detected subtours during the
-   optimization process to improve efficiency.
-
-</details>
+> [!TIP]
+>
+> <details>
+> <summary>Click here for a list of common mistakes to avoid in this exercise</summary>
+>
+> 1. **Using Simplified Constraints Instead of the Dantzig-Fulkerson-Johnson
+>    (DFJ) Formulation** A common mistake is to replace the DFJ formulation with
+>    a simpler constraint that only prohibits cycles of length $|C|$ by
+>    enforcing $\sum_{(i, j) \in C} x_{ij} \leq |C| - 1$, resp., adding a clause
+>    prohibiting one of the edges. While this constraint is often introduced in
+>    the literature as a first step, it is exponentially weaker than the DFJ
+>    formulation. The DFJ formulation also prohibits any permutations of a
+>    cycle, making it much more effective for finding valid Hamiltonian cycles.
+> 2. **Restricting the Objective Search to Integer Values** Another frequent
+>    error is limiting the search for the objective to integer values or
+>    attempting to round edge weights to large integers. Edge weights are not
+>    always integral, and rounding can lead to inaccuracies. Although a
+>    sufficiently high resolution might allow tests to pass, this approach is
+>    likely to be too slow for larger instances. Make sure to work directly with
+>    the original edge weights to achieve accurate and efficient results.
+> 3. **Attempting to Add All Subtour Elimination Constraints at Once** A
+>    frequent mistake is trying to add all subtour elimination constraints at
+>    the start of the optimization process, rather than adding them dynamically
+>    as needed. Since there is an exponential number of these constraints,
+>    adding them all upfront makes the optimization process prohibitively slow.
+>    Instead, add subtour elimination constraints only for detected subtours
+>    during the optimization process to improve efficiency.
+>
+> </details>
 
 ## References
 

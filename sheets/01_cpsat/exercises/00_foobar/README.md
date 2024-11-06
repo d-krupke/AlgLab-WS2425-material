@@ -69,6 +69,13 @@ problem. You can use any function from the `ortools` library, such as:
 - `solver.value(...)` to get the value of a variable
 - Find more [here](https://d-krupke.github.io/cpsat-primer/04_modelling.html)
 
+> [!IMPORTANT]
+>
+> Reading through the
+> [chapter on modelling](https://d-krupke.github.io/cpsat-primer/04_modelling.html)
+> will make this exercise much easier. Getting familiar with the interface of
+> CP-SAT is part of the exercise.
+
 1. Implement function `solve` in `solution_cpsat.py`. It has the same interface
    as the pure Python implementation. Be sure that you do not tell CP-SAT the
    solution, but rather let it find the solution itself.

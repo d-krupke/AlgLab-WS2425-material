@@ -41,15 +41,16 @@ for such a formula would be
 ```
 
 The boolean satisfiability problem asks if a given formula $\phi$ is
-*satisfiable*. A formula is satisfiable if there is a *satisfying assignment*,
-i.e., a mapping $a: \\{x_1,\ldots,x_n\\} \to \\{\texttt{true}, \texttt{false}\\}$,
-that assigns every variable a boolean value, such that the formula evaluates to
-true. For a formula $\phi$ is conjunctive normal form, this implies that every
-clause needs to be satisfied, i.e., at least on of its literals has been
-satisfied. A literal $\bar{x}_u$ is satisfied if and only if
-$a(x_u) = \texttt{false}$ is; analogous, a literal $x_u$ is satisfied if and
-only if $a(x_u)  = \texttt{true}$ is. Our example $\phi_1$ is satisfied by the
-assignment $x_1 = x_2 = x_3 = \texttt{false}, x_4 = \texttt{true}$.
+_satisfiable_. A formula is satisfiable if there is a _satisfying assignment_,
+i.e., a mapping
+$a: \\{x_1,\ldots,x_n\\} \to \\{\texttt{true}, \texttt{false}\\}$, that assigns
+every variable a boolean value, such that the formula evaluates to true. For a
+formula $\phi$ is conjunctive normal form, this implies that every clause needs
+to be satisfied, i.e., at least on of its literals has been satisfied. A literal
+$\bar{x}_u$ is satisfied if and only if $a(x_u) = \texttt{false}$ is; analogous,
+a literal $x_u$ is satisfied if and only if $a(x_u)  = \texttt{true}$ is. Our
+example $\phi_1$ is satisfied by the assignment
+$x_1 = x_2 = x_3 = \texttt{false}, x_4 = \texttt{true}$.
 
 There is a large number of highly-optimized SAT-solvers available, i.e.,
 programs that can solve instances of this problem relatively efficiently. The
@@ -169,9 +170,11 @@ The model is very simple:
   parameter we want to optimize for. As we are solving the decision problem, we
   will try different values for $k$. The smallest feasible $k$ is the optimal
   solution.
-- $\mathcal{C}(G)$: The set of all cycles in the graph $G$. A cycle is a sequence of
-    vertices $v_1, \ldots, v_n\in V$ such that $(v_1, v_2), \ldots, (v_{n-1}, v_n),
-    (v_n, v_1)\in E$ are edges in the graph $G$.
+- $\mathcal{C}(G)$: The set of all cycles in the graph $G$. A cycle is a
+  sequence of vertices $v_1, \ldots, v_n\in V$ such that
+  $(v_1, v_2), \ldots, (v_{n-1}, v_n),
+    (v_n, v_1)\in E$ are edges in the
+  graph $G$.
 
 #### Decision Variables:
 

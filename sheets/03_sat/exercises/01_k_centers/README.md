@@ -49,7 +49,7 @@ emergency response, including urban planning, facility placement, and logistics.
 2. **Implement a Heuristic for an Upper Bound** Develop a heuristic to quickly
    obtain an upper bound on the objective value. This heuristic does not need to
    be optimal but should be efficient enough to find an initial feasible
-   solution for the problem.
+   solution for the problem. Here is a refined version of the text:
 3. **Implement the Decision Variant Using a SAT Solver** Implement the decision
    variant, which, for a given $c$, either finds a feasible solution with
    $|C| \leq k$ and objective value at most $c$ or proves that no such solution
@@ -60,26 +60,39 @@ emergency response, including urban planning, facility placement, and logistics.
    the decision variant. Implement your solution in `solution.py`. To verify
    your implementation, run `python3 verify.py` in the terminal.
 
-**Hint:** You may find
-[`shortest_path_length`](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.shortest_path_length.html#networkx.algorithms.shortest_paths.generic.shortest_path_length)
-useful.
+> [!NOTE]
+>
+> **Heuristics as Warm Starts**
+>
+> Developing a heuristic to quickly generate an initial solution can also
+> enhance the performance of advanced solvers like CP-SAT. While this initial
+> solution does not need to be optimal, closer proximity to the optimal solution
+> typically results in a stronger speedup effect. Most solvers offer an
+> interface to provide this solution as a **hint** or **warm start**.
 
-<details>
-<summary>Click here for a list of common mistakes to avoid in this exercise</summary>
-
-1. **Encoding Shortest Paths within the SAT Formulation** A common error is
-   attempting to let the SAT solver compute shortest paths as part of the
-   solution. Remember, the SAT solver is not meant to handle shortest-path
-   computations. You need to preprocess the graph and compute all shortest paths
-   before formulating the SAT constraints, as path lengths are not part of the
-   decisions in this problem.
-2. **Overlooking the Center Vertex in Distance Calculations** When identifying
-   which vertices are within a given distance of a potential center, do not
-   forget that the center vertex itself is always within zero distance. Be sure
-   to include the center vertex in the set of reachable vertices within the
-   specified distance.
-
-</details>
+> [!TIP]
+>
+> <details>
+> <summary>Click here for a list of common mistakes to avoid in this exercise</summary>
+>
+> 1. **Encoding Shortest Paths within the SAT Formulation** A common error is
+>    attempting to let the SAT solver compute shortest paths as part of the
+>    solution. Remember, the SAT solver is not meant to handle shortest-path
+>    computations. It is absolutely fine to preprocess the graph and compute all
+>    shortest paths before formulating the SAT constraints, as path lengths are
+>    not part of the decisions in this problem.
+> 2. **Overlooking the Center Vertex in Distance Calculations** When identifying
+>    which vertices are within a given distance of a potential center, do not
+>    forget that the center vertex itself is always within zero distance. Be
+>    sure to include the center vertex in the set of reachable vertices within
+>    the specified distance.
+> 3. **Restricting the Objective Search to Integer Values** Another frequent
+>    error is limiting the search for the objective to integer values or
+>    attempting to round distances to large integers. The distances may not be
+>    integral and rounding can be highly inefficient. Compute the list of
+>    possible objective values first and work directly on this list.
+>
+> </details>
 
 ## References
 
