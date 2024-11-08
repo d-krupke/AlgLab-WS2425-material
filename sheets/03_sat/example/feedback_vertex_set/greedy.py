@@ -1,8 +1,8 @@
 import networkx as nx
-from util import Node, Set, find_cycle
+from util import Node, find_cycle
 
 
-def greedy_fvs(graph: nx.Graph) -> Set[Node]:
+def greedy_fvs(graph: nx.Graph) -> set[Node]:
     """
     This method generates a greedy solution to the Feedback Vertex Set problem.
     The algorithm iteratively identifies and "breaks open" remaining cycles in the graph.
