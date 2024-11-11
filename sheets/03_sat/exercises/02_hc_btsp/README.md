@@ -75,8 +75,8 @@ tour length introduces a much larger range of potential values.
 >
 > Use the Dantzig-Fulkerson-Johnson formulation for efficiency. Leverage
 > `nx.connected_components` from the `networkx` library to identify connected
-> components and incrementally add clauses to ensure each component has an
-> edge leaving it.
+> components and incrementally add clauses to ensure each component has an edge
+> leaving it.
 
 ### Deliverable 2: Bottleneck Traveling Salesman Problem (BTSP) Solver
 

@@ -1,0 +1,228 @@
+{
+  "locations": [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+  ],
+  "tunnels": [
+    {
+      "source": 0,
+      "target": 17,
+      "throughput_per_hour": 4,
+      "reinforcement_costs": 3.1902266659096328
+    },
+    {
+      "source": 0,
+      "target": 8,
+      "throughput_per_hour": 11,
+      "reinforcement_costs": 11.585379569947769
+    },
+    {
+      "source": 0,
+      "target": 14,
+      "throughput_per_hour": 15,
+      "reinforcement_costs": 10.3372483750554
+    },
+    {
+      "source": 0,
+      "target": 18,
+      "throughput_per_hour": 6,
+      "reinforcement_costs": 6.787797221105744
+    },
+    {
+      "source": 0,
+      "target": 10,
+      "throughput_per_hour": 1,
+      "reinforcement_costs": 0.7927785117090101
+    },
+    {
+      "source": 0,
+      "target": 19,
+      "throughput_per_hour": 3,
+      "reinforcement_costs": 1.954977092285282
+    },
+    {
+      "source": 0,
+      "target": 9,
+      "throughput_per_hour": 19,
+      "reinforcement_costs": 15.613580148232707
+    },
+    {
+      "source": 0,
+      "target": 2,
+      "throughput_per_hour": 18,
+      "reinforcement_costs": 19.153809097060197
+    },
+    {
+      "source": 0,
+      "target": 1,
+      "throughput_per_hour": 16,
+      "reinforcement_costs": 16.30625384432946
+    },
+    {
+      "source": 0,
+      "target": 16,
+      "throughput_per_hour": 12,
+      "reinforcement_costs": 13.232395980278458
+    },
+    {
+      "source": 5,
+      "target": 6,
+      "throughput_per_hour": 1,
+      "reinforcement_costs": 0.9841290036045813
+    },
+    {
+      "source": 3,
+      "target": 9,
+      "throughput_per_hour": 7,
+      "reinforcement_costs": 3.8345148389683295
+    },
+    {
+      "source": 1,
+      "target": 8,
+      "throughput_per_hour": 4,
+      "reinforcement_costs": 3.298350028966187
+    },
+    {
+      "source": 6,
+      "target": 18,
+      "throughput_per_hour": 17,
+      "reinforcement_costs": 13.72960301856445
+    },
+    {
+      "source": 10,
+      "target": 13,
+      "throughput_per_hour": 11,
+      "reinforcement_costs": 5.774306386964323
+    },
+    {
+      "source": 5,
+      "target": 15,
+      "throughput_per_hour": 11,
+      "reinforcement_costs": 8.503130950712992
+    },
+    {
+      "source": 1,
+      "target": 12,
+      "throughput_per_hour": 6,
+      "reinforcement_costs": 4.157405818277317
+    },
+    {
+      "source": 6,
+      "target": 13,
+      "throughput_per_hour": 9,
+      "reinforcement_costs": 7.252103370532914
+    },
+    {
+      "source": 14,
+      "target": 15,
+      "throughput_per_hour": 8,
+      "reinforcement_costs": 7.792253836768515
+    },
+    {
+      "source": 10,
+      "target": 19,
+      "throughput_per_hour": 5,
+      "reinforcement_costs": 3.970444763425665
+    },
+    {
+      "source": 8,
+      "target": 19,
+      "throughput_per_hour": 5,
+      "reinforcement_costs": 4.8560601827872905
+    },
+    {
+      "source": 3,
+      "target": 5,
+      "throughput_per_hour": 1,
+      "reinforcement_costs": 0.7752296371955132
+    },
+    {
+      "source": 7,
+      "target": 16,
+      "throughput_per_hour": 1,
+      "reinforcement_costs": 0.5842343008101103
+    },
+    {
+      "source": 9,
+      "target": 15,
+      "throughput_per_hour": 5,
+      "reinforcement_costs": 3.025649886280066
+    },
+    {
+      "source": 7,
+      "target": 13,
+      "throughput_per_hour": 15,
+      "reinforcement_costs": 15.604067987432414
+    },
+    {
+      "source": 3,
+      "target": 16,
+      "throughput_per_hour": 3,
+      "reinforcement_costs": 2.1182067351087435
+    },
+    {
+      "source": 7,
+      "target": 18,
+      "throughput_per_hour": 5,
+      "reinforcement_costs": 2.8743016891298776
+    },
+    {
+      "source": 11,
+      "target": 17,
+      "throughput_per_hour": 10,
+      "reinforcement_costs": 7.9373670747240554
+    },
+    {
+      "source": 2,
+      "target": 12,
+      "throughput_per_hour": 18,
+      "reinforcement_costs": 21.32260414832097
+    },
+    {
+      "source": 2,
+      "target": 17,
+      "throughput_per_hour": 16,
+      "reinforcement_costs": 17.761873919026513
+    },
+    {
+      "source": 11,
+      "target": 12,
+      "throughput_per_hour": 15,
+      "reinforcement_costs": 15.753384853628559
+    },
+    {
+      "source": 4,
+      "target": 14,
+      "throughput_per_hour": 2,
+      "reinforcement_costs": 2.35665783837017
+    },
+    {
+      "source": 4,
+      "target": 11,
+      "throughput_per_hour": 15,
+      "reinforcement_costs": 13.108008503240326
+    }
+  ],
+  "elevator_location": 0,
+  "mines": {
+    "1": { "location": 1, "ore_per_hour": 3 },
+    "2": { "location": 2, "ore_per_hour": 2 },
+    "3": { "location": 3, "ore_per_hour": 10 },
+    "4": { "location": 4, "ore_per_hour": 2 },
+    "5": { "location": 5, "ore_per_hour": 3 },
+    "6": { "location": 6, "ore_per_hour": 3 },
+    "7": { "location": 7, "ore_per_hour": 2 },
+    "8": { "location": 8, "ore_per_hour": 2 },
+    "9": { "location": 9, "ore_per_hour": 9 },
+    "10": { "location": 10, "ore_per_hour": 10 },
+    "11": { "location": 11, "ore_per_hour": 5 },
+    "12": { "location": 12, "ore_per_hour": 8 },
+    "13": { "location": 13, "ore_per_hour": 8 },
+    "14": { "location": 14, "ore_per_hour": 8 },
+    "15": { "location": 15, "ore_per_hour": 2 },
+    "16": { "location": 16, "ore_per_hour": 9 },
+    "17": { "location": 17, "ore_per_hour": 3 },
+    "18": { "location": 18, "ore_per_hour": 5 },
+    "19": { "location": 19, "ore_per_hour": 10 }
+  },
+  "budget": 200.0
+}

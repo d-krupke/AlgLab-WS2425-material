@@ -11,7 +11,7 @@ limit the number of centers that can be built. The company aims to minimize the
 maximum travel time any neighborhood would face to reach its closest center in
 an emergency.
 
-The company’s data engineers have simplified the city’s layout, representing
+The company's data engineers have simplified the city's layout, representing
 each neighborhood by a central location. This center has been chosen to ensure
 that most places within the neighborhood are quickly reachable from it. The
 travel times between these neighborhood centers form a network, where
