@@ -43,13 +43,11 @@ emergency response, including urban planning, facility placement, and logistics.
    with an objective value of at most $c$ for a given $k$. Since
    $d_{vw} \in \mathbb{R}^+_0$, $c$ can be any non-negative floating-point
    number. Think about how to minimize the number of queries to the decision
-   variant by identifying the possible values that $c$ can take. **Hint:** The
-   number of potential optimal values for $c$ is quadratic in the number of
-   nodes.
+   variant by identifying the possible values that $c$ can take.
 2. **Implement a Heuristic for an Upper Bound** Develop a heuristic to quickly
    obtain an upper bound on the objective value. This heuristic does not need to
    be optimal but should be efficient enough to find an initial feasible
-   solution for the problem. Here is a refined version of the text:
+   solution for the problem.
 3. **Implement the Decision Variant Using a SAT Solver** Implement the decision
    variant, which, for a given $c$, either finds a feasible solution with
    $|C| \leq k$ and objective value at most $c$ or proves that no such solution
@@ -59,6 +57,10 @@ emergency response, including urban planning, facility placement, and logistics.
    and returns the corresponding set $C$. This will require multiple calls to
    the decision variant. Implement your solution in `solution.py`. To verify
    your implementation, run `python3 verify.py` in the terminal.
+
+> [!TIP]
+>
+> The number of potential optimal values for $c$ is quadratic in the number of nodes.
 
 > [!NOTE]
 >
@@ -91,6 +93,37 @@ emergency response, including urban planning, facility placement, and logistics.
 >    attempting to round distances to large integers. The distances may not be
 >    integral and rounding can be highly inefficient. Compute the list of
 >    possible objective values first and work directly on this list.
+>
+> </details>
+
+> [!TIP]
+>
+> <details>
+>  <summary>Click here for a hint on how to implement a reasonable heuristic for this problem.</summary>
+> Add the centers one by one. Always add a center at the vertex which is most distanced to all already selected centers. Stop as soon as you reached $k$ centers.
+> In order not to compute too many shortest paths repeatedly, use networkx to compute all distances in the beginning, e.g., with `nx.all_pairs_dijkstra_path_length`.
+> </details>
+
+> [!TIP]
+>
+> <details>
+> <summary>Click here for a hint on how to implement the decision variant.</summary>
+>
+> 1. Create a container that maps every vertex to a variable index, which we will use to indicate if this vertex has been selected as center.
+> 2. Add an `atmost` constraint on all these variables that at most $k$ of them are allowed to be true.
+> 3. Create an auxiliary function that returns you for a vertex $v$ and a distance $l$ the list of vertices that are in reach of $v$ within $l$.
+> 4. Create a `limit_distance` method to you decision solver that takes a distance `l` and adds for every vertex a clause that one of the vertices in range (given by the auxiliary function) needs to be True.
+>
+> </details>
+
+> [!TIP]
+> 
+> <details>
+> <summary>Click here for a hint on how to implement the optimization variant.</summary>
+>
+> 1. Create a sorted list of all the distances that may still be better than the solution of your heuristic.
+> 2. Create a while loop that takes the next best distance in your list and uses the `limit_distance` with it to enforce a solution that has at most this distance.
+> 2. Solve the decition variant. If it is infeasible, return the pervious solution as the optimal solution. Otherwise, save the solution as best solution and do the next loop after poping the last distance.
 >
 > </details>
 
