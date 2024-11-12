@@ -102,14 +102,23 @@ tour length introduces a much larger range of potential values.
 >    the literature as a first step, it is exponentially weaker than the DFJ
 >    formulation. The DFJ formulation also prohibits any permutations of a
 >    cycle, making it much more effective for finding valid Hamiltonian cycles.
-> 2. **Restricting the Objective Search to Integer Values** Another frequent
+> 2. **Not Reducing the Search Space with Every New Incumbent** Remember that
+>    you can not only reduce the search space by the value you queried but
+>    directly to the objective value you found. This can drastically reduce the
+>    number of queries to your decision variant.
+> 3. **Trying to use cardinality constraints for the subtour elimination
+>    constraints** Cardinality constraints are much more expensive than common
+>    clauses. While the $\geq 2$ constraint can be implemented with cardinality
+>    constraints and is actually more accurate, $\geq 1$ is actually sufficient
+>    and can be implemented with common clauses.
+> 4. **Restricting the Objective Search to Integer Values** Another frequent
 >    error is limiting the search for the objective to integer values or
 >    attempting to round edge weights to large integers. Edge weights are not
 >    always integral, and rounding can lead to inaccuracies. Although a
 >    sufficiently high resolution might allow tests to pass, this approach is
 >    likely to be too slow for larger instances. Make sure to work directly with
 >    the original edge weights to achieve accurate and efficient results.
-> 3. **Attempting to Add All Subtour Elimination Constraints at Once** A
+> 5. **Attempting to Add All Subtour Elimination Constraints at Once** A
 >    frequent mistake is trying to add all subtour elimination constraints at
 >    the start of the optimization process, rather than adding them dynamically
 >    as needed. Since there is an exponential number of these constraints,

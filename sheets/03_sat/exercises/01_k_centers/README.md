@@ -60,7 +60,8 @@ emergency response, including urban planning, facility placement, and logistics.
 
 > [!TIP]
 >
-> The number of potential optimal values for $c$ is quadratic in the number of nodes.
+> The number of potential optimal values for $c$ is quadratic in the number of
+> nodes.
 
 > [!NOTE]
 >
@@ -77,18 +78,22 @@ emergency response, including urban planning, facility placement, and logistics.
 > <details>
 > <summary>Click here for a list of common mistakes to avoid in this exercise</summary>
 >
-> 1. **Encoding Shortest Paths within the SAT Formulation** A common error is
+> 1. **Not reducing the search space with every new incumbent** Remember that
+>    when the decision variant returns a solution, the objective value of the
+>    solution is a valid upper bound for the optimization variant, not just the
+>    objective you have been looking for.
+> 2. **Encoding Shortest Paths within the SAT Formulation** A common error is
 >    attempting to let the SAT solver compute shortest paths as part of the
 >    solution. Remember, the SAT solver is not meant to handle shortest-path
 >    computations. It is absolutely fine to preprocess the graph and compute all
 >    shortest paths before formulating the SAT constraints, as path lengths are
 >    not part of the decisions in this problem.
-> 2. **Overlooking the Center Vertex in Distance Calculations** When identifying
+> 3. **Overlooking the Center Vertex in Distance Calculations** When identifying
 >    which vertices are within a given distance of a potential center, do not
 >    forget that the center vertex itself is always within zero distance. Be
 >    sure to include the center vertex in the set of reachable vertices within
 >    the specified distance.
-> 3. **Restricting the Objective Search to Integer Values** Another frequent
+> 4. **Restricting the Objective Search to Integer Values** Another frequent
 >    error is limiting the search for the objective to integer values or
 >    attempting to round distances to large integers. The distances may not be
 >    integral and rounding can be highly inefficient. Compute the list of
@@ -99,31 +104,50 @@ emergency response, including urban planning, facility placement, and logistics.
 > [!TIP]
 >
 > <details>
->  <summary>Click here for a hint on how to implement a reasonable heuristic for this problem.</summary>
-> Add the centers one by one. Always add a center at the vertex which is most distanced to all already selected centers. Stop as soon as you reached $k$ centers.
-> In order not to compute too many shortest paths repeatedly, use networkx to compute all distances in the beginning, e.g., with `nx.all_pairs_dijkstra_path_length`.
+> <summary>Click here for a hint on implementing a reasonable heuristic for this problem.</summary>
+>
+> Add centers one by one. At each step, select the vertex farthest from all
+> already chosen centers. Stop once you have selected $k$ centers. To avoid
+> repeatedly computing shortest paths, use `networkx` to precompute all
+> distances upfront, e.g., with `nx.all_pairs_dijkstra_path_length`.
+>
 > </details>
 
 > [!TIP]
 >
 > <details>
-> <summary>Click here for a hint on how to implement the decision variant.</summary>
+> <summary>Click here for a hint on implementing the decision variant.</summary>
 >
-> 1. Create a container that maps every vertex to a variable index, which we will use to indicate if this vertex has been selected as center.
-> 2. Add an `atmost` constraint on all these variables that at most $k$ of them are allowed to be true.
-> 3. Create an auxiliary function that returns you for a vertex $v$ and a distance $l$ the list of vertices that are in reach of $v$ within $l$.
-> 4. Create a `limit_distance` method to you decision solver that takes a distance `l` and adds for every vertex a clause that one of the vertices in range (given by the auxiliary function) needs to be True.
+> 1. Create a class for your decision solver that offers a `solve` method which
+>    either returns a solution or `None` if no solution exists.
+> 2. Create a mapping of vertices to variable indices, where each index
+>    indicates if the corresponding vertex is selected as a center.
+> 3. Add an `atmost` constraint to ensure at most $k$ centers are selected.
+> 4. Implement an auxiliary function that, for a vertex $v$ and distance $l$,
+>    returns the list of vertices reachable from $v$ within $l$.
+> 5. Add a `limit_distance` method to your decision solver. This method should
+>    take a distance `l` and enforce, for each vertex, that at least one vertex
+>    within the given range (determined by the auxiliary function) is selected
+>    as a center. Note that this method can be called repeatedly as long as the
+>    `l` is decreasing.
 >
 > </details>
 
 > [!TIP]
-> 
-> <details>
-> <summary>Click here for a hint on how to implement the optimization variant.</summary>
 >
-> 1. Create a sorted list of all the distances that may still be better than the solution of your heuristic.
-> 2. Create a while loop that takes the next best distance in your list and uses the `limit_distance` with it to enforce a solution that has at most this distance.
-> 2. Solve the decition variant. If it is infeasible, return the pervious solution as the optimal solution. Otherwise, save the solution as best solution and do the next loop after poping the last distance.
+> <details>
+> <summary>Click here for a hint on implementing the optimization variant.</summary>
+>
+> 1. Create a sorted list of all potential objective values (distances).
+> 2. Run your heuristic to obtain an initial incumbent solution.
+> 3. Iterate as follows:
+>    1. Discard all distances that are worse than the incumbent solution.
+>    2. Take the next best distance and use `limit_distance` to enforce a
+>       solution with this maximum distance.
+>    3. Solve the decision variant.
+>    4. If infeasible, return the current incumbent solution as the optimal
+>       solution.
+>    5. Otherwise, update the incumbent solution.
 >
 > </details>
 
