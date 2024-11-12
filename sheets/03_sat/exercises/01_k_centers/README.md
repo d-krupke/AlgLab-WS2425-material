@@ -73,6 +73,17 @@ emergency response, including urban planning, facility placement, and logistics.
 > typically results in a stronger speedup effect. Most solvers offer an
 > interface to provide this solution as a **hint** or **warm start**.
 
+> [!IMPORTANT]
+>
+> Proving unsatisfiability is often significantly more challenging than finding
+> a feasible solution. When selecting a search strategy (e.g., up, down, binary,
+> etc.), the type of calls made to the SAT solver is far more important than the
+> number of calls. The optimal strategy can vary significantly depending on the
+> specific problem, so it is crucial to adapt your approach accordingly.
+> Additionally, if you progress sequentially from a feasible solution toward
+> infeasibility, you can recycle your SAT solver state, including previously
+> learned clauses, as the newly added constraints build on the existing ones.
+
 > [!TIP]
 >
 > <details>
