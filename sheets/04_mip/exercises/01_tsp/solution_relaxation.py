@@ -62,7 +62,8 @@ class GurobiTspRelaxationSolver:
 
     def solve(self) -> None:
         """
-        Solve the model and return the objective value and the lower bound.
+        Solve the model. After solving the model, the solution, its objective value,
+        and the lower bounds should be available via the corresponding methods.
         """
         # Set parameters for the solver.
         self._model.Params.LogToConsole = 1

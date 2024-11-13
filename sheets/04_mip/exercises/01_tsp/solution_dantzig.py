@@ -52,7 +52,8 @@ class GurobiTspSolver:
 
     def solve(self, time_limit: float, opt_tol: float = 0.001) -> None:
         """
-        Solve the model and return the objective value and the lower bound.
+        Solve the model. After solving the model, the solution, its objective value,
+        and the lower bounds should be available via the corresponding methods.
         """
         # Set parameters for the solver.
         self._model.Params.LogToConsole = 1
