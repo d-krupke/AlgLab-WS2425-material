@@ -1,7 +1,5 @@
 # Exercise: k-centers using a SAT-solver
 
-### 01. Vertex K-Centers
-
 ![Vertex K-Centers](./.figures/dalle-kcentre.png)
 
 Your next client is a logistics company tasked with establishing emergency
@@ -17,6 +15,8 @@ that most places within the neighborhood are quickly reachable from it. The
 travel times between these neighborhood centers form a network, where
 neighborhoods are nodes, and roads with corresponding travel times are edges
 between them.
+
+## Vertex K-Centers - A Facility Location Problem
 
 This abstraction brings us to the **Vertex K-Center Problem**. Formally, you are
 given a weighted, undirected graph $G = (V, E)$, where $V$ represents
@@ -89,26 +89,16 @@ emergency response, including urban planning, facility placement, and logistics.
 > <details>
 > <summary>Click here for a list of common mistakes to avoid in this exercise</summary>
 >
-> 1. **Not reducing the search space with every new incumbent** Remember that
->    when the decision variant returns a solution, the objective value of the
->    solution is a valid upper bound for the optimization variant, not just the
->    objective you have been looking for.
-> 2. **Encoding Shortest Paths within the SAT Formulation** A common error is
->    attempting to let the SAT solver compute shortest paths as part of the
->    solution. Remember, the SAT solver is not meant to handle shortest-path
->    computations. It is absolutely fine to preprocess the graph and compute all
->    shortest paths before formulating the SAT constraints, as path lengths are
->    not part of the decisions in this problem.
-> 3. **Overlooking the Center Vertex in Distance Calculations** When identifying
->    which vertices are within a given distance of a potential center, do not
->    forget that the center vertex itself is always within zero distance. Be
->    sure to include the center vertex in the set of reachable vertices within
->    the specified distance.
-> 4. **Restricting the Objective Search to Integer Values** Another frequent
->    error is limiting the search for the objective to integer values or
->    attempting to round distances to large integers. The distances may not be
->    integral and rounding can be highly inefficient. Compute the list of
->    possible objective values first and work directly on this list.
+> 1. **Not Reducing the Search Space with Each New Incumbent** When the decision
+>    variant returns a solution, the objective value of that solution serves as
+>    a valid upper bound for the optimization variant. Do not forget to narrow
+>    the search space accordingly, rather than continuing to search for the
+>    previously targeted objective value.
+> 2. **Restricting the Objective Search to Integer Values** A common mistake is
+>    limiting the search for objective values to integers or rounding distances
+>    to large integers. Distances may not be integral, and rounding can lead to
+>    inefficiencies. Instead, compute the list of all potential objective values
+>    and work directly with this list.
 >
 > </details>
 
@@ -117,10 +107,15 @@ emergency response, including urban planning, facility placement, and logistics.
 > <details>
 > <summary>Click here for a hint on implementing a reasonable heuristic for this problem.</summary>
 >
+> Here is a guideline to help you implement the heuristic part if you get stuck.
+> To maximize your learning, ensure you have thoroughly attempted to solve it on
+> your own before referring to this hint.
+>
 > Add centers one by one. At each step, select the vertex farthest from all
 > already chosen centers. Stop once you have selected $k$ centers. To avoid
 > repeatedly computing shortest paths, use `networkx` to precompute all
-> distances upfront, e.g., with `nx.all_pairs_dijkstra_path_length`.
+> distances upfront, e.g., with `nx.all_pairs_dijkstra_path_length`. This
+> is already provided in the `Distances` class.
 >
 > </details>
 
@@ -128,6 +123,10 @@ emergency response, including urban planning, facility placement, and logistics.
 >
 > <details>
 > <summary>Click here for a hint on implementing the decision variant.</summary>
+>
+> Here is a guideline to help you implement the decision part if you get stuck.
+> To maximize your learning, ensure you have thoroughly attempted to solve it on
+> your own before referring to this hint.
 >
 > 1. Create a class for your decision solver that offers a `solve` method which
 >    either returns a solution or `None` if no solution exists.
@@ -148,6 +147,10 @@ emergency response, including urban planning, facility placement, and logistics.
 >
 > <details>
 > <summary>Click here for a hint on implementing the optimization variant.</summary>
+>
+> Here is a guideline to help you implement the optimization part if you get
+> stuck. To maximize your learning, ensure you have thoroughly attempted to
+> solve it on your own before referring to this hint.
 >
 > 1. Create a sorted list of all potential objective values (distances).
 > 2. Run your heuristic to obtain an initial incumbent solution.
@@ -181,7 +184,5 @@ emergency response, including urban planning, facility placement, and logistics.
   For those, who are interested in the historical development of SAT solvers. As
   computer science is a very fast moving field, it is always good to know how
   young the field of SAT solving actually is.
-- [Facility Location Problem](https://en.wikipedia.org/wiki/Optimal_facility_location)
-- [Git LFS](https://git-lfs.com/): The instances are stored using Git LFS. You
-  may need to install it as otherwise the instances will be empty and result in
-  an error.
+- [Facility Location Problem](https://en.wikipedia.org/wiki/Optimal_facility_location):
+  This problem belongs to the class of facility location problems.
