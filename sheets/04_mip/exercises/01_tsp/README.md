@@ -176,6 +176,19 @@ relaxation. In this task, you will analyze this similarity yourself.
    the linear relaxation has a value of 90, the similarity is 90%.
 4. Save both results in the `evaluation.ipynb` notebook for us to verify.
 
+> [!TIP]
+>
+> When solving the Bottleneck Traveling Salesman Problem (BTSP) with a SAT
+> solver, the subtour elimination constraints are modified to $\geq 1$. This is
+> sufficient for correctness and can be implemented as a simple and efficient
+> clause. In contrast, for MIP solvers, using $\geq 2$ is typically more
+> efficient because it leads to a stronger linear relaxation.
+>
+> If you are curious, you can compare the linear relaxations for $\geq 1$ and
+> $\geq 2$ in this exercise to observe the difference in performance. This
+> highlights an important principle: your model should be tailored to the solver
+> you are using.
+
 ## References
 
 - [Definition of Linear Relaxation on Wikipedia](https://en.wikipedia.org/wiki/Linear_programming_relaxation)

@@ -114,8 +114,8 @@ emergency response, including urban planning, facility placement, and logistics.
 > Add centers one by one. At each step, select the vertex farthest from all
 > already chosen centers. Stop once you have selected $k$ centers. To avoid
 > repeatedly computing shortest paths, use `networkx` to precompute all
-> distances upfront, e.g., with `nx.all_pairs_dijkstra_path_length`. This
-> is already provided in the `Distances` class.
+> distances upfront, e.g., with `nx.all_pairs_dijkstra_path_length`. This is
+> already provided in the `Distances` class.
 >
 > </details>
 
