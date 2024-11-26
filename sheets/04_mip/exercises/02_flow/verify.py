@@ -92,7 +92,7 @@ def solve_hc_instance(filepath: Path, objective_sol: int):
                 out_sum <= in_sum + instance.mines[loc].ore_per_hour,
                 f"There is more ore leaving mine {loc} than entering + produced!",
             )
-    visualize_solution(flow_graph, instance)
+    #visualize_solution(flow_graph, instance)
 
 
 def visualize_solution(flow_graph: nx.DiGraph, instance: Instance):
