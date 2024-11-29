@@ -30,6 +30,13 @@ but also to perform complex graph algorithms. NetworkX is widely utilized across
 various disciplines incorporating network analysis, such as social network
 analysis and bioinformatics.
 
+> [!TIP]
+>
+> If you prefer a video crash course,
+> [NeuralNine (YouTube)](https://www.youtube.com/watch?v=VetBkjcm9Go) has a
+> 40min one for you. It differs slightly in focus, but gives you a good
+> overview.
+
 ### Installation
 
 You can install NetworkX using pip:
@@ -280,6 +287,12 @@ values, and it also simplifies data parsing, serialization, and deserialization.
 This makes your code more robust and easier to maintain. Familiarity with
 Pydantic is not required; simply follow the usage examples provided in the
 solution.py file.
+
+> [!TIP]
+>
+> Check out this
+> [11min video tutorial (YouTube)](https://www.youtube.com/watch?v=XIdQ6gO3Anc)
+> for a quick introduction to Pydantic.
 
 ```python
 # pip install pydantic
