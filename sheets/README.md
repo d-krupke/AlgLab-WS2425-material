@@ -17,7 +17,7 @@
 **Objective**:
 
 - Understand the limitations of polynomial complexity by analyzing the
-  impracticality of an \( O(n^3) \) for-loop.
+  impracticality of an $O(n^3)$ for-loop.
 - Learn to identify performance bottlenecks using a profiler.
 - Gain a basic introduction to graph manipulation in Python.
 - Appreciate the importance of understanding algorithm operations to fully
