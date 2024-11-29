@@ -190,19 +190,22 @@ thanks to the similarity of the solutions to the efficiently computable linear
 relaxation. In this task, you will analyze this similarity yourself.
 
 1. Run the block
+
    ```python
    # Run me to get a sample on linear relaxation and integral solution
    get_sample()
    print(f"There are now {len(samples)} samples")
    ```
+
    in `evaluation.ipynb` multiple times to get a set of at least 20 pairs of
    linear relaxation and integral solutions.
 
    You should get a visualization like this:
-   | ![Example of a Sample](./.assets/relaxation_example.png) |
-   |:--:|
+
+   |             ![Example of a Sample](./.assets/relaxation_example.png)              |
+   | :-------------------------------------------------------------------------------: |
    | Example of a comparison between the linear relaxations and the integral solution. |
-   
+
 2. Evaluate how close the linear relaxations are to the integral solution and
    how much difference the `>=2` makes. Remembering how the Branch and Bound
    algorithm works, how much time do you think can be saved by a good linear
