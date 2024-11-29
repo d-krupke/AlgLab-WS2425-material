@@ -136,10 +136,15 @@ $$\min \quad \sum_{e\in E} c_e\cdot x_e$$
 > The instance will be given as networkx graph, with edge weights as attribute
 > `weight`.
 
-> [!TIP]
+> [!IMPORTANT]
 >
-> You do not need to use lazy constraints, but you have to perform multiple
-> iterations and add constraints as needed.
+> You do not need to use lazy constraints; instead, you should perform multiple
+> iterations and add constraints as needed. The `MIPSOL` callback will not work
+> because it is only called after the MIP solver has found a feasible solution
+> during the branch-and-bound search. However, the linear relaxation is a linear
+> program and can be solved directly without the branch-and-bound search, thus
+> not triggering any `MIPSOL` events. Iterate on the same model such that Gurobi
+> can exploit the previous solution and speed up the solving process.
 
 > [!IMPORTANT]
 >
@@ -158,22 +163,22 @@ $$\min \quad \sum_{e\in E} c_e\cdot x_e$$
 > You can copy a lot of code from the integral version.
 
 <table>
-  <tr>
-    <td style="width: 50%;">
-      <img src="./.assets/optimal_tsp.png" alt="Integral Solution" />
-    </td>
-    <td style="width: 50%;">
-      <img src="./.assets/linear_relaxation.png" alt="Linear Relaxation" />
-    </td>
-  </tr>
-  <tr>
-    <td style="text-align: center;">
-      An optimal integral solution for the TSP.
-    </td>
-    <td style="text-align: center;">
-      <em>Linear Relaxation of the TSP. The red edges have fractional values, i.e., 0&lt;x&lt;1, most of the time x=0.5. The linear relaxation is connected when applying the subtour elimination constraints on all edges with $x\geq \varepsilon$.</em>
-    </td>
-  </tr>
+   <tr>
+      <td style="width: 50%;">
+         <img src="./.assets/optimal_tsp.png" alt="Integral Solution" />
+      </td>
+      <td style="width: 50%;">
+         <img src="./.assets/linear_relaxation.png" alt="Linear Relaxation" />
+      </td>
+   </tr>
+   <tr>
+      <td style="text-align: center;">
+         An optimal integral solution for the TSP.
+      </td>
+      <td style="text-align: center;">
+         <em>Linear Relaxation of the TSP. The red edges have fractional values, i.e., 0 &lt; x &lt; 1, most of the time x = 0.5. The linear relaxation is connected when applying the subtour elimination constraints on all edges with x &ge; &epsilon;.</em>
+      </td>
+   </tr>
 </table>
 
 ---
@@ -192,6 +197,12 @@ relaxation. In this task, you will analyze this similarity yourself.
    ```
    in `evaluation.ipynb` multiple times to get a set of at least 20 pairs of
    linear relaxation and integral solutions.
+
+   You should get a visualization like this:
+   | ![Example of a Sample](./.assets/relaxation_example.png) |
+   |:--:|
+   | Example of a comparison between the linear relaxations and the integral solution. |
+   
 2. Evaluate how close the linear relaxations are to the integral solution and
    how much difference the `>=2` makes. Remembering how the Branch and Bound
    algorithm works, how much time do you think can be saved by a good linear

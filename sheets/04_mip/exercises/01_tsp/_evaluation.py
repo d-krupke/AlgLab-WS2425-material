@@ -40,7 +40,7 @@ def draw_integral_solution(
 
 
 def draw_fractional_solution(
-    ax, solution: nx.Graph, points: list[tuple[int, int]], title="Fractional Solution"
+    ax, solution: nx.Graph, points: list[tuple[int, int]], title="Linear Relaxation"
 ):
     ax.set_title(title)
     # equal aspect ratio
@@ -139,7 +139,7 @@ def get_sample():
         axes[0, 0],
         relaxed_solution_k2,
         points,
-        f"Fractional Solution k=2 (obj: {linear_relaxation_value_k2:.2f})",
+        f"Linear Relaxation k=2 (obj: {linear_relaxation_value_k2:.2f})",
     )
 
     # Solving the integral problem
@@ -168,12 +168,12 @@ def get_sample():
         axes[1, 0],
         relaxed_solution_k1,
         points,
-        f"Fractional Solution k=1 (obj: {linear_relaxation_value_k1:.2f})",
+        f"Linear Relaxation k=1 (obj: {linear_relaxation_value_k1:.2f})",
     )
 
     # Re-use integral solution for second row
     draw_integral_solution(
-        axes[1, 1], solution, points, f"Integral Solution (obj: {objective_value:.2f})"
+        axes[1, 1], solution, points, f"Optimal Solution (obj: {objective_value:.2f})"
     )
 
     # Difference between integral solution and k=1 relaxation
