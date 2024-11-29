@@ -12,16 +12,16 @@ from .search_strategy import SearchStrategy
 from .solutions import SolutionSet
 
 __all__ = [
-    "Instance",
-    "Item",
     "BnBNode",
-    "NodeFactory",
-    "SearchStrategy",
-    "SolutionSet",
-    "BranchingStrategy",
     "BnBSearch",
-    "RelaxationSolver",
     "BranchingDecisions",
+    "BranchingStrategy",
     "FractionalSolution",
     "Heuristics",
+    "Instance",
+    "Item",
+    "NodeFactory",
+    "RelaxationSolver",
+    "SearchStrategy",
+    "SolutionSet",
 ]

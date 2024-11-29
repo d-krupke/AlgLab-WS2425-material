@@ -1,6 +1,6 @@
+import logging
 from pathlib import Path
 
-import matplotlib.pyplot as plt
 import networkx as nx
 from _alglab_utils import CHECK, main, mandatory_testcase
 from data_schema import Instance
@@ -12,6 +12,7 @@ EPS = 0.001
 
 def solve_hc_instance(filepath: Path, objective_sol: int):
     with filepath.open() as f:
+        logging.info("Loading instance from %s ...", filepath)
         instance: Instance = Instance.model_validate_json(f.read())
 
     solver = MiningRoutingSolver(instance)
@@ -29,6 +30,10 @@ def solve_hc_instance(filepath: Path, objective_sol: int):
             for tunnel in instance.tunnels
             if {tunnel.source, tunnel.target} == tunnel_set
         ]
+        CHECK(
+            from_ != instance.elevator_location,
+            "There should be nothing leaving the elevator location!",
+        )
         CHECK(
             len(matching_tunnels) == 1,
             f"The solution contains a tunnel from {from_} to {to_} that is not part of the given instance!",
@@ -92,32 +97,6 @@ def solve_hc_instance(filepath: Path, objective_sol: int):
                 out_sum <= in_sum + instance.mines[loc].ore_per_hour,
                 f"There is more ore leaving mine {loc} than entering + produced!",
             )
-    visualize_solution(flow_graph, instance)
-
-
-def visualize_solution(flow_graph: nx.DiGraph, instance: Instance):
-    pos = nx.spring_layout(flow_graph)  # positions for all nodes
-
-    # nodes
-    nx.draw_networkx_nodes(flow_graph, pos, node_size=700)
-
-    # edges
-    edges = flow_graph.edges(data=True)
-    nx.draw_networkx_edges(flow_graph, pos, edgelist=edges, width=2, edge_color="black")
-
-    # labels
-    labels = {node: str(node) for node in flow_graph.nodes()}
-    nx.draw_networkx_labels(flow_graph, pos, labels, font_size=20)
-
-    # edge labels
-    edge_labels = {
-        (u, v): f"{d['utilization']}/{d['capacity']}"
-        for u, v, d in flow_graph.edges(data=True)
-    }
-    nx.draw_networkx_edge_labels(flow_graph, pos, edge_labels=edge_labels)
-
-    plt.title("Mining Routing Solution")
-    plt.show()
 
 
 @mandatory_testcase(max_runtime_s=30)

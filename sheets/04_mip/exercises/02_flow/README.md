@@ -62,6 +62,19 @@ More specific:
 2. To verify your implementation, run `python3 verify.py` in the terminal. If
    your implementation is correct, you will see a success message. Otherwise,
    you will see an error message.
+3. Read
+   [Gurobi's log documentation](https://docs.gurobi.com/projects/optimizer/en/current/concepts/logging/mip.html)
+   and analyze how much faster you get a solution that is within 5% and 1% of
+   the optimal solution. What do you observe? You can focus on the largest
+   instance for this analysis with `python verify.py instance_500`
+
+> [!NOTE]
+>
+> Real-world data is often imperfect. Consequently, obtaining a solution within
+> 1%, 5%, or even 20% of the optimal value can be sufficient and can save
+> significant computational time. However, this greatly depends on the specific
+> problem, as there are areas where achieving the exact optimal solution is
+> crucial, e.g., in some financial applications where the winner takes it all.
 
 ## References
 

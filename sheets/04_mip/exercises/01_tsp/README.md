@@ -86,7 +86,7 @@ $$\min \quad \sum_{e\in E} c_e\cdot x_e$$
 
 ## Tasks
 
-### Implement a TSP Solver in Gurobi
+### A. Implement a TSP Solver in Gurobi
 
 1. Implement a TSP Solver using above's formulation and Lazy Constraints with
    Gurobi in `solution_dantzig.py`.
@@ -106,7 +106,9 @@ $$\min \quad \sum_{e\in E} c_e\cdot x_e$$
 >
 > You can use NetworkX's `connected_components` to find subtours.
 
-### Linear Relaxation
+---
+
+### B. Linear Relaxation
 
 > [!WARNING]
 >
@@ -120,7 +122,13 @@ $$\min \quad \sum_{e\in E} c_e\cdot x_e$$
    `solution_relaxation.py`. Make sure you have understood what a linear
    relaxation is before you start. Given the previous task, it should be a very
    small step to implement the linear relaxation.
-2. Verify your implementation by running `python3 verify_relaxation.py` in the
+2. When implementing the DFJ for a SAT-solver, we used `>=1` for the subtour
+   elimination constraints, which is sufficient for correctness and allowed us
+   to model it via a simple clause. For MIP solvers, using `>=2` is typically
+   more efficient because it leads to a stronger linear relaxation. We will try
+   to analyze that ourselves, so the solver class has a parameter `k` that you
+   should use to set the subtour elimination constraints.
+3. Verify your implementation by running `python3 verify_relaxation.py` in the
    terminal. All instances should be solved very quickly.
 
 > [!NOTE]
@@ -149,11 +157,28 @@ $$\min \quad \sum_{e\in E} c_e\cdot x_e$$
 >
 > You can copy a lot of code from the integral version.
 
-| ![Integral Solution](./.assets/optimal_tsp.png) |                                                                                           ![Linear Relaxation](./.assets/linear_relaxation.png)                                                                                            |
-| :---------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|    An optimal integral solution for the TSP.    | _Linear Relaxation of the TSP. The red edges have fractional values, i.e., $0<x<1$, most of the time $x=0.5$. The linear relaxation is connected when applying the subtour elimination constraints on all edges with $x\geq \varepsilon$._ |
+<table>
+  <tr>
+    <td style="width: 50%;">
+      <img src="./.assets/optimal_tsp.png" alt="Integral Solution" />
+    </td>
+    <td style="width: 50%;">
+      <img src="./.assets/linear_relaxation.png" alt="Linear Relaxation" />
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      An optimal integral solution for the TSP.
+    </td>
+    <td style="text-align: center;">
+      <em>Linear Relaxation of the TSP. The red edges have fractional values, i.e., $0<x<1$, most of the time $x=0.5$. The linear relaxation is connected when applying the subtour elimination constraints on all edges with $x\geq \varepsilon$.</em>
+    </td>
+  </tr>
+</table>
 
-### Experimental Analysis
+---
+
+### C. Experimental Analysis
 
 Gurobi can compute optimal solutions for reasonable sized instances of the TSP
 thanks to the similarity of the solutions to the efficiently computable linear
@@ -167,27 +192,20 @@ relaxation. In this task, you will analyze this similarity yourself.
    ```
    in `evaluation.ipynb` multiple times to get a set of at least 20 pairs of
    linear relaxation and integral solutions.
-2. Compute the average overlap in percentage between the edges chosen in the
-   linear relaxation and those in the optimal solution. An edge is considered to
-   be chosen if $x_e \geq 0.5$.
-3. Compute the average similarity of the objective value between the linear
-   relaxation and the optimal solution. The similarity is given in percentage of
-   the optimal solution. E.g., if the optimal solution has a value of 100 and
-   the linear relaxation has a value of 90, the similarity is 90%.
-4. Save both results in the `evaluation.ipynb` notebook for us to verify.
+2. Evaluate how close the linear relaxations are to the integral solution and
+   how much difference the `>=2` makes. Remembering how the Branch and Bound
+   algorithm works, how much time do you think can be saved by a good linear
+   relaxation?
 
-> [!TIP]
+> [!NOTE]
 >
-> When solving the Bottleneck Traveling Salesman Problem (BTSP) with a SAT
-> solver, the subtour elimination constraints are modified to $\geq 1$. This is
-> sufficient for correctness and can be implemented as a simple and efficient
-> clause. In contrast, for MIP solvers, using $\geq 2$ is typically more
-> efficient because it leads to a stronger linear relaxation.
->
-> If you are curious, you can compare the linear relaxations for $\geq 1$ and
-> $\geq 2$ in this exercise to observe the difference in performance. This
-> highlights an important principle: your model should be tailored to the solver
-> you are using.
+> The strength of the linear relaxation is often a good indicator of how well a
+> MIP solver will perform. You can often reinforce the linear relaxation by
+> adding additional constraints that do not matter for the integral solution but
+> will cut off some fractional solutions. This is a common technique in
+> optimization, and you can find more information in the literature.
+
+---
 
 ## References
 

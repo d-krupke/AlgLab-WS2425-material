@@ -2,6 +2,7 @@
 Implement the Dantzig-Fulkerson-Johnson formulation for the TSP.
 """
 
+import logging
 import typing
 
 import gurobipy as gp
@@ -15,7 +16,7 @@ class GurobiTspSolver:
     IMPLEMENT ME!
     """
 
-    def __init__(self, G: nx.Graph):
+    def __init__(self, G: nx.Graph, k: int = 2):
         """
         G is a weighted networkx graph, where the weight of an edge is stored in the
         "weight" attribute. It is strictly positive.
@@ -28,6 +29,13 @@ class GurobiTspSolver:
             weight > 0
             for _, _, weight in G.edges.data("weight", default=None)  # type: ignore[attr-defined]
         ), "Invalid graph"
+        assert k in {1, 2}, "Invalid k"
+        self.k = k
+        logging.info("Creating model ...")
+        logging.info(
+            "Graph has %d nodes and %d edges", G.number_of_nodes(), G.number_of_edges()
+        )
+        logging.info("Implementing subtour elimination with >= %d", k)
         self._model = gp.Model()
         # TODO: Implement me!
 
@@ -55,6 +63,7 @@ class GurobiTspSolver:
         Solve the model. After solving the model, the solution, its objective value,
         and the lower bounds should be available via the corresponding methods.
         """
+        logging.info("Solving model ...")
         # Set parameters for the solver.
         self._model.Params.LogToConsole = 1
         self._model.Params.TimeLimit = time_limit

@@ -1,3 +1,5 @@
+import logging
+
 import gurobipy as gp
 import networkx as nx
 from data_schema import Instance, Solution
@@ -9,6 +11,14 @@ class MiningRoutingSolver:
     def __init__(self, instance: Instance) -> None:
         self.instance = instance
         self.budget = instance.budget
+        logging.info("Creating model ...")
+        logging.info(
+            "Instance has %d locations, %d mines, %d tunnels, and a budget of %.2f",
+            len(instance.locations),
+            len(instance.mines),
+            len(instance.tunnels),
+            instance.budget,
+        )
         # TODO: Implement me!
 
 
@@ -20,3 +30,4 @@ class MiningRoutingSolver:
             - The throughput/utilization of the edge, in goods per hour
         """
         # TODO: implement me!
+        logging.info("Solving model...")
