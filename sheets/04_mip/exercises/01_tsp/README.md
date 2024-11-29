@@ -171,7 +171,7 @@ $$\min \quad \sum_{e\in E} c_e\cdot x_e$$
       An optimal integral solution for the TSP.
     </td>
     <td style="text-align: center;">
-      <em>Linear Relaxation of the TSP. The red edges have fractional values, i.e., $0<x<1$, most of the time $x=0.5$. The linear relaxation is connected when applying the subtour elimination constraints on all edges with $x\geq \varepsilon$.</em>
+      <em>Linear Relaxation of the TSP. The red edges have fractional values, i.e., 0&lt;x&lt;1, most of the time x=0.5. The linear relaxation is connected when applying the subtour elimination constraints on all edges with $x\geq \varepsilon$.</em>
     </td>
   </tr>
 </table>
